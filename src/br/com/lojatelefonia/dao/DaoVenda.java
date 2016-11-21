@@ -162,6 +162,35 @@ public class DaoVenda {
         }
     }
     
+    public static void devolverProduto(Integer idProduto, Integer qtdProduto) throws SQLException, Exception {
+        //Monta a string de atualização do cliente no BD, utilizando prepared statement
+        String sql = "UPDATE produtos SET qtd = ? WHERE id = ?";
+        //Conexão para abertura e fechamento
+        Connection connection = null;
+        //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
+        PreparedStatement preparedStatement = null;
+        try {
+            //Abre uma conexão com o banco de dados
+            connection = ConnectionUtils.getConnection();
+            //Cria um statement para execução de instruções SQL
+            preparedStatement = connection.prepareStatement(sql);
+            //Configura os parâmetros do "PreparedStatement"
+            preparedStatement.setInt(1, qtdProduto);
+            preparedStatement.setInt(2, idProduto);
+            //Executa o comando no banco de dados
+            preparedStatement.execute();
+        } finally {
+            //Se o statement ainda estiver aberto, realiza seu fechamento
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            //Se a conexão ainda estiver aberta, realiza seu fechamento
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
+
     //Pegar tabela de venda
     public static ArrayList<ModeloVenda> getListaVendas() {
         ArrayList<ModeloVenda> listaVendas = new ArrayList<ModeloVenda>();
