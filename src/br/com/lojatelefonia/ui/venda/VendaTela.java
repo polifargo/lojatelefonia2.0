@@ -25,9 +25,6 @@ import java.util.logging.Logger;
 
 public class VendaTela extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form RealizarVenda
-     */
     public VendaTela() {
         initComponents();
         ListarProdutos();
@@ -50,7 +47,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
             row[5] = lista.get(i).getFab();
             row[6] = lista.get(i).getQtd();
             row[7] = lista.get(i).getValor();
-
             model.addRow(row);
         }
     }
@@ -75,13 +71,15 @@ public class VendaTela extends javax.swing.JInternalFrame {
     public void ListarClientes() {
         ArrayList<Cliente> lista = DaoCliente.getListaClientes();
         DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-        Object[] row = new Object[5];
+        Object[] row = new Object[7];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getId();
             row[1] = lista.get(i).getNome();
             row[2] = lista.get(i).getNasc();
             row[3] = lista.get(i).getTelefone();
-            row[4] = lista.get(i).getCpf();
+            row[4] = lista.get(i).getEnd();
+            row[5] = lista.get(i).getEmail();
+            row[6] = lista.get(i).getCpf();
 
             model.addRow(row);
         }
@@ -99,7 +97,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         buttonVender = new javax.swing.JButton();
-        txtValorFinal = new javax.swing.JLabel();
+        txtValorTotal = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -130,6 +128,10 @@ public class VendaTela extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtClienteFinal = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtValorDesconto = new javax.swing.JLabel();
+        jLabel3541 = new javax.swing.JLabel();
+        txtValorFinal = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -167,7 +169,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
             }
         });
 
-        txtValorFinal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtValorTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 51, 51));
@@ -254,7 +256,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -366,7 +368,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPesquisaCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tabela de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -418,7 +420,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -450,6 +452,16 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
         txtClienteFinal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Desconto:");
+
+        txtValorDesconto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel3541.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3541.setText("Valor Final:");
+
+        txtValorFinal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -466,18 +478,25 @@ public class VendaTela extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel3541)
+                                    .addComponent(jLabel13))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtValorDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonVender, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(8, 8, 8))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtClienteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonVender)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(8, 8, 8)))
+                                .addComponent(txtClienteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 797, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -494,21 +513,30 @@ public class VendaTela extends javax.swing.JInternalFrame {
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
+                            .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(txtValorDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3541)
                             .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(buttonVender, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtClienteFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGap(11, 11, 11))
+                                    .addComponent(txtClienteFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonVender, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtClienteFinal, txtValorFinal});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtClienteFinal, txtValorTotal});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -549,7 +577,11 @@ public class VendaTela extends javax.swing.JInternalFrame {
                     return;
                 }
             }
-            txtValorFinal.setText(Double.toString(getSum()));
+            double valorFinal = ServiceRelatorio.calcularDesconto(valorTotal);
+            double valorDesconto = valorTotal - valorFinal;
+            txtValorTotal.setText(Double.toString(valorTotal));
+            txtValorDesconto.setText(Double.toString(valorDesconto));
+            txtValorFinal.setText(Double.toString(valorFinal));
         }
     }//GEN-LAST:event_buttonAddActionPerformed
 
@@ -557,6 +589,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private void buttonDeleteListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteListActionPerformed
         int i = jTableVenda.getSelectedRow();
         TableModel model = jTableVenda.getModel();
+        double valorTotal = Double.parseDouble(model.getValueAt(i, 7).toString()) * Integer.parseInt(txtProdutoQtd.getText());
         if (i < 0) {
             JOptionPane.showMessageDialog(null, "Por favor selecione um produto.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -564,8 +597,8 @@ public class VendaTela extends javax.swing.JInternalFrame {
             int id = Integer.parseInt(txtVendaID.getText());
             int option = JOptionPane.showConfirmDialog(this, "Deseja excluir do carrinho o produto selecionado?", "Aviso!", JOptionPane.YES_NO_OPTION);
             try {
-                ServiceVenda.excliurProdutoQuantidade(id, qtd, option);
                 if (option == 0) {
+                    ServiceVenda.excliurProdutoQuantidade(id, qtd, option);
                     ListarVenda();
                     JOptionPane.showMessageDialog(this, "Produto excluido");
                     int del = Integer.parseInt(model.getValueAt(i, 3).toString());
@@ -578,7 +611,11 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            txtValorFinal.setText(Double.toString(getSum()));
+            double valorFinal = ServiceRelatorio.calcularDesconto(valorTotal);
+            double valorDesconto = valorTotal - valorFinal;
+            txtValorTotal.setText(Double.toString(valorTotal));
+            txtValorDesconto.setText(Double.toString(valorDesconto));
+            txtValorFinal.setText(Double.toString(valorFinal));
         }
     }//GEN-LAST:event_buttonDeleteListActionPerformed
 
@@ -592,9 +629,11 @@ public class VendaTela extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente nao selecionado", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                ServiceRelatorio.cadastrarRelatorio(Double.parseDouble(txtValorFinal.getText()), txtClienteFinal.getText(), getQtd(), dateFormat.format(date));
+                ServiceRelatorio.cadastrarRelatorio(Double.parseDouble(txtValorTotal.getText()), txtClienteFinal.getText(), getQtd(), dateFormat.format(date));
                 JOptionPane.showMessageDialog(this, "Compra realizada com sucesso!");
                 txtClienteFinal.setText("");
+                txtValorTotal.setText("");
+                txtValorDesconto.setText("");
                 txtValorFinal.setText("");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -711,8 +750,10 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel3541;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -736,7 +777,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private javax.swing.JLabel txtProdutoID;
     private javax.swing.JTextField txtProdutoQtd;
     private javax.swing.JTextField txtProdutoQtdDel;
+    private javax.swing.JLabel txtValorDesconto;
     private javax.swing.JLabel txtValorFinal;
+    private javax.swing.JLabel txtValorTotal;
     private javax.swing.JLabel txtVendaID;
     // End of variables declaration//GEN-END:variables
 }
