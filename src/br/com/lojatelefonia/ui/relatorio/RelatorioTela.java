@@ -1,9 +1,7 @@
 package br.com.lojatelefonia.ui.relatorio;
 
 import br.com.lojatelefonia.dao.DaoRelatorio;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -11,22 +9,34 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Relatorio;
 import br.com.lojatelefonia.services.ServiceRelatorio;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class RelatorioTela extends javax.swing.JInternalFrame {
-    
-    SimpleDateFormat formatarDate = new SimpleDateFormat("dd/MM/yyyy");
-    GregorianCalendar gc = new GregorianCalendar();
-    
+
+    SimpleDateFormat sdf = new SimpleDateFormat("MMMM/yyyy");
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    String dfim;
+    String di;
+    Calendar ci = Calendar.getInstance();
+
     public RelatorioTela() {
         initComponents();
-        String data = formatarDate.format(gc.getTime());
+
+        ci.set(Calendar.DAY_OF_MONTH, ci.getActualMaximum(Calendar.DAY_OF_MONTH));
+        dfim = df.format(ci.getTime());
+        ci.set(Calendar.DAY_OF_MONTH, ci.getActualMinimum(Calendar.DAY_OF_MONTH));
+        di = df.format(ci.getActualMinimum(Calendar.DAY_OF_MONTH));
+        String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
         ListarRelatorio();
     }
 
     //Mostrar dados na tabela
     public void ListarRelatorio() {
-        ArrayList<Relatorio> lista = DaoRelatorio.getListaRelatorio(dataRelatorio.getText());
+        ArrayList<Relatorio> lista = DaoRelatorio.getListaRelatorio(di, dfim);
         DefaultTableModel model = (DefaultTableModel) jTableRelatorio.getModel();
         model.setRowCount(0);
         Object[] row = new Object[5];
@@ -39,7 +49,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
             model.addRow(row);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,7 +101,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,10 +175,10 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dataRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dataRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
@@ -249,21 +259,22 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
-        gc.add(gc.DAY_OF_MONTH, -1);
-        String data = formatarDate.format(gc.getTime());
+        ci.add(ci.MONTH, -1);
+        String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
         //refresh
-        DefaultTableModel model = (DefaultTableModel) jTableRelatorio.getModel();
-        model.setRowCount(0);
+        ci.set(Calendar.DAY_OF_MONTH, ci.getActualMaximum(Calendar.DAY_OF_MONTH));
+        dfim = df.format(ci.getTime());
+        ci.set(Calendar.DAY_OF_MONTH, ci.getActualMinimum(Calendar.DAY_OF_MONTH));
+        di = df.format(ci.getActualMinimum(Calendar.DAY_OF_MONTH));
         ListarRelatorio();
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
     private void buttonAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvancarActionPerformed
-        gc.add(gc.DAY_OF_MONTH, 1);
-        String data = formatarDate.format(gc.getTime());
+        ci.add(ci.MONTH, 1);
+        String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
-        //refreshs
-        DefaultTableModel model = (DefaultTableModel) jTableRelatorio.getModel();
+        //refresh
         ListarRelatorio();
     }//GEN-LAST:event_buttonAvancarActionPerformed
 
