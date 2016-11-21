@@ -11,8 +11,6 @@ import br.com.lojatelefonia.models.Relatorio;
 import br.com.lojatelefonia.services.ServiceRelatorio;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class RelatorioTela extends javax.swing.JInternalFrame {
 
@@ -24,7 +22,6 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
 
     public RelatorioTela() {
         initComponents();
-
         ci.set(Calendar.DAY_OF_MONTH, ci.getActualMaximum(Calendar.DAY_OF_MONTH));
         dfim = df.format(ci.getTime());
         ci.set(Calendar.DAY_OF_MONTH, ci.getActualMinimum(Calendar.DAY_OF_MONTH));
@@ -275,6 +272,10 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
         String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
         //refresh
+        ci.set(Calendar.DAY_OF_MONTH, ci.getActualMaximum(Calendar.DAY_OF_MONTH));
+        dfim = df.format(ci.getTime());
+        ci.set(Calendar.DAY_OF_MONTH, ci.getActualMinimum(Calendar.DAY_OF_MONTH));
+        di = df.format(ci.getActualMinimum(Calendar.DAY_OF_MONTH));
         ListarRelatorio();
     }//GEN-LAST:event_buttonAvancarActionPerformed
 

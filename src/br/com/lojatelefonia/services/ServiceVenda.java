@@ -73,4 +73,19 @@ public class ServiceVenda {
             throw new DataSourceException("Erro na fonte de dados", e);
         }
     }
+    
+    //Retorna produto ao estoque
+    public static void atualizarProduto(Integer idProduto, Integer qtd)
+            throws ProdutoException, DataSourceException {
+        try {
+            //Realiza a exclusão do produto por id
+            DaoVenda.atualizarProduto(idProduto, qtd);
+            return;
+        } catch (Exception e) {
+            //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+        }
+    }
+
 }

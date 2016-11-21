@@ -28,6 +28,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
     /**
      * Creates new form RealizarVenda
      */
+    public ArrayList<Integer> row2 = new ArrayList<>();
+    int cont = 0;
+
     public VendaTela() {
         initComponents();
         ListarProdutos();
@@ -524,6 +527,8 @@ public class VendaTela extends javax.swing.JInternalFrame {
     //Botao adicionar ao carrinho
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         int i = jTableProdutos.getSelectedRow();
+        row2.add(cont, i);
+        cont++;
         TableModel model = jTableProdutos.getModel();
         //Insere os dados na tabela carrinho
         double valorTotal = Double.parseDouble(model.getValueAt(i, 7).toString()) * Integer.parseInt(txtProdutoQtd.getText());
@@ -543,13 +548,13 @@ public class VendaTela extends javax.swing.JInternalFrame {
                     ServiceProduto.atualizarProdutoEstoque(Integer.parseInt(model.getValueAt(i, 0).toString()), qtdp);
                     ListarVenda();
                     ListarProdutos();
+                    txtValorFinal.setText(Double.toString(getSum()));
                     JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho");
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
-            txtValorFinal.setText(Double.toString(getSum()));
         }
     }//GEN-LAST:event_buttonAddActionPerformed
 
@@ -557,28 +562,30 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private void buttonDeleteListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteListActionPerformed
         int i = jTableVenda.getSelectedRow();
         TableModel model = jTableVenda.getModel();
+        TableModel model2 = jTableProdutos.getModel();
         if (i < 0) {
             JOptionPane.showMessageDialog(null, "Por favor selecione um produto.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             int qtd = Integer.parseInt(model.getValueAt(i, 3).toString()) - Integer.parseInt(txtProdutoQtdDel.getText());
             int id = Integer.parseInt(txtVendaID.getText());
+            int idProduto = Integer.parseInt(txtProdutoID.getText());
+            int qtd2 = Integer.parseInt(model2.getValueAt(row2.get(cont - 1), 6).toString()) + Integer.parseInt(txtProdutoQtdDel.getText());
             int option = JOptionPane.showConfirmDialog(this, "Deseja excluir do carrinho o produto selecionado?", "Aviso!", JOptionPane.YES_NO_OPTION);
             try {
                 ServiceVenda.excliurProdutoQuantidade(id, qtd, option);
-                if (option == 0) {
+                ServiceVenda.atualizarProduto(idProduto, qtd2);
+                ListarVenda();
+                ListarProdutos();
+                JOptionPane.showMessageDialog(this, "Produto excluido");
+                int del = Integer.parseInt(model.getValueAt(i, 3).toString());
+                if (del <= 0) {
+                    ServiceVenda.excliurProduto(id, option);
                     ListarVenda();
-                    JOptionPane.showMessageDialog(this, "Produto excluido");
-                    int del = Integer.parseInt(model.getValueAt(i, 3).toString());
-                    if (del == 0) {
-                        ServiceVenda.excliurProduto(id, option);
-                        ListarVenda();
-                    }
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            txtValorFinal.setText(Double.toString(getSum()));
         }
     }//GEN-LAST:event_buttonDeleteListActionPerformed
 
@@ -608,6 +615,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        row2.clear();
     }//GEN-LAST:event_buttonVenderActionPerformed
 
     //Pega informacoes do carrinho com o clique
@@ -629,6 +637,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        row2.clear();
     }//GEN-LAST:event_formInternalFrameClosed
 
     //Filtro de pesquisa produto
@@ -693,7 +702,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
         }
         return sum;
     }
-
+    
     public int getQtd() {
         int rowsCount = jTableVenda.getRowCount();
         int sum = 0;
