@@ -28,8 +28,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
     /**
      * Creates new form RealizarVenda
      */
-    public ArrayList<Integer> row2 = new ArrayList<>();
-    int cont = 0;
+    int row2;
 
     public VendaTela() {
         initComponents();
@@ -62,12 +61,13 @@ public class VendaTela extends javax.swing.JInternalFrame {
         ArrayList<ModeloVenda> lista = DaoVenda.getListaVendas();
         DefaultTableModel model = (DefaultTableModel) jTableVenda.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[4];
+        Object[] row = new Object[5];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getIdVenda();
-            row[1] = lista.get(i).getValorVenda();
-            row[2] = lista.get(i).getProduto();
-            row[3] = lista.get(i).getQtd();
+            row[1] = lista.get(i).getValorUni();
+            row[2] = lista.get(i).getValorVenda();
+            row[3] = lista.get(i).getProduto();
+            row[4] = lista.get(i).getQtd();
 
             model.addRow(row);
         }
@@ -134,10 +134,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtClienteFinal = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        txtValorDesconto = new javax.swing.JLabel();
-        jLabel3541 = new javax.swing.JLabel();
-        txtValorFinal = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -262,7 +258,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -298,11 +294,11 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Valor Total", "Produto", "Quantidade"
+                "ID", "Valor Unitário", "Valor Total", "Produto", "Quantidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -374,7 +370,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPesquisaCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)))
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tabela de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -426,7 +422,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -458,16 +454,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
         txtClienteFinal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Desconto:");
-
-        txtValorDesconto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel3541.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3541.setText("Valor Final:");
-
-        txtValorFinal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -484,16 +470,10 @@ public class VendaTela extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel3541)
-                                    .addComponent(jLabel13))
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtValorDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(buttonVender, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -502,7 +482,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtClienteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 797, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -519,15 +499,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(txtValorDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3541)
-                            .addComponent(txtValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -558,32 +530,39 @@ public class VendaTela extends javax.swing.JInternalFrame {
     //Botao adicionar ao carrinho
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         int i = jTableProdutos.getSelectedRow();
-        row2.add(cont, i);
-        cont++;
         TableModel model = jTableProdutos.getModel();
-        //Insere os dados na tabela carrinho
-        double valorTotal = Double.parseDouble(model.getValueAt(i, 7).toString()) * Integer.parseInt(txtProdutoQtd.getText());
-        String nome = model.getValueAt(i, 1).toString();
-        int qtd = Integer.parseInt(txtProdutoQtd.getText());
-
-        //Atualiza a tabela produto
-        int qtdp = Integer.parseInt(model.getValueAt(i, 6).toString()) - Integer.parseInt(txtProdutoQtd.getText());
-        if (i < 0) {
-            JOptionPane.showMessageDialog(null, "Por favor selecione um produto.", "ERRO", JOptionPane.ERROR_MESSAGE);
+        row2 = i;
+        int comp = Integer.parseInt(txtProdutoQtd.getText());
+        int comp2 = Integer.parseInt(model.getValueAt(i, 4).toString());
+        if (comp > comp2) {
+            JOptionPane.showMessageDialog(null, "Quantidade de produtos muito alto.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
         } else {
-            if (Integer.parseInt(model.getValueAt(i, 6).toString()) <= 0) {
-                JOptionPane.showMessageDialog(null, "Sem estoque do item selecionado.");
+            //Insere os dados na tabela carrinho
+            double valorUni = Double.parseDouble(model.getValueAt(i, 7).toString());
+            double valorTotal = Double.parseDouble(model.getValueAt(i, 7).toString()) * Integer.parseInt(txtProdutoQtd.getText());
+            String nome = model.getValueAt(i, 1).toString();
+            int qtd = Integer.parseInt(txtProdutoQtd.getText());
+
+            //Atualiza a tabela produto
+            int qtdp = Integer.parseInt(model.getValueAt(i, 6).toString()) - Integer.parseInt(txtProdutoQtd.getText());
+            if (i < 0) {
+                JOptionPane.showMessageDialog(null, "Por favor selecione um produto.", "ERRO", JOptionPane.ERROR_MESSAGE);
             } else {
-                try {
-                    ServiceVenda.cadastrarProduto(valorTotal, nome, qtd);
-                    ServiceProduto.atualizarProdutoEstoque(Integer.parseInt(model.getValueAt(i, 0).toString()), qtdp);
-                    ListarVenda();
-                    ListarProdutos();
-                    txtValorFinal.setText(Double.toString(getSum()));
-                    JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    return;
+                if (Integer.parseInt(model.getValueAt(i, 6).toString()) <= 0) {
+                    JOptionPane.showMessageDialog(null, "Sem estoque do item selecionado.");
+                } else {
+                    try {
+                        ServiceVenda.cadastrarProduto(valorUni, valorTotal, nome, qtd);
+                        ServiceProduto.atualizarProdutoEstoque(Integer.parseInt(model.getValueAt(i, 0).toString()), qtdp);
+                        ListarVenda();
+                        ListarProdutos();
+                        txtValorTotal.setText(Double.toString(getSum()));
+                        JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                 }
             }
         }
@@ -597,22 +576,23 @@ public class VendaTela extends javax.swing.JInternalFrame {
         if (i < 0) {
             JOptionPane.showMessageDialog(null, "Por favor selecione um produto.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
-            int qtd = Integer.parseInt(model.getValueAt(i, 3).toString()) - Integer.parseInt(txtProdutoQtdDel.getText());
+            int qtd = Integer.parseInt(model.getValueAt(i, 4).toString()) - Integer.parseInt(txtProdutoQtdDel.getText());
+            int qtd2 = Integer.parseInt(model2.getValueAt(row2, 6).toString()) + Integer.parseInt(txtProdutoQtdDel.getText());
             int id = Integer.parseInt(txtVendaID.getText());
             int idProduto = Integer.parseInt(txtProdutoID.getText());
-            int qtd2 = Integer.parseInt(model2.getValueAt(row2.get(cont - 1), 6).toString()) + Integer.parseInt(txtProdutoQtdDel.getText());
             int option = JOptionPane.showConfirmDialog(this, "Deseja excluir do carrinho o produto selecionado?", "Aviso!", JOptionPane.YES_NO_OPTION);
             try {
-                ServiceVenda.excliurProdutoQuantidade(id, qtd, option);
-                ServiceVenda.atualizarProduto(idProduto, qtd2);
-                ListarVenda();
+                ServiceProduto.atualizarProdutoEstoque(idProduto, qtd2);
                 ListarProdutos();
-                JOptionPane.showMessageDialog(this, "Produto excluido");
-                int del = Integer.parseInt(model.getValueAt(i, 3).toString());
+                ServiceVenda.excliurProdutoQuantidade(id, qtd, option);
+                ListarVenda();
+                int del = Integer.parseInt(model.getValueAt(i, 4).toString());
                 if (del <= 0) {
                     ServiceVenda.excliurProduto(id, option);
                     ListarVenda();
                 }
+                txtValorTotal.setText(Double.toString(getSum()));
+                JOptionPane.showMessageDialog(this, "Produto excluido");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -622,7 +602,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
     //Botao realizar vender
     private void buttonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVenderActionPerformed
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MMMM/yyyy");
         Date date = new Date();
         if (jTableVenda.getRowCount() <= 0) {
             JOptionPane.showMessageDialog(null, "O carrinho esta vazio.", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -634,28 +614,19 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Compra realizada com sucesso!");
                 txtClienteFinal.setText("");
                 txtValorTotal.setText("");
-                txtValorDesconto.setText("");
-                txtValorFinal.setText("");
+                ServiceVenda.excluirCarrinho();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            try {
-                ServiceVenda.excluirCarrinho();
-            } catch (ProdutoException ex) {
-                Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DataSourceException ex) {
-                Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
-        row2.clear();
     }//GEN-LAST:event_buttonVenderActionPerformed
 
     //Pega informacoes do carrinho com o clique
     private void jTableVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVendaMouseClicked
         int i = jTableVenda.getSelectedRow();
         TableModel model = jTableVenda.getModel();
-        txtProdutoQtdDel.setText(model.getValueAt(i, 3).toString());
+        txtProdutoQtdDel.setText(model.getValueAt(i, 4).toString());
         txtVendaID.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_jTableVendaMouseClicked
 
@@ -670,7 +641,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        row2.clear();
     }//GEN-LAST:event_formInternalFrameClosed
 
     //Filtro de pesquisa produto
@@ -735,12 +705,12 @@ public class VendaTela extends javax.swing.JInternalFrame {
         }
         return sum;
     }
-    
+
     public int getQtd() {
         int rowsCount = jTableVenda.getRowCount();
         int sum = 0;
         for (int i = 0; i < rowsCount; i++) {
-            sum = sum + Integer.parseInt(jTableVenda.getValueAt(i, 3).toString());
+            sum = sum + Integer.parseInt(jTableVenda.getValueAt(i, 4).toString());
         }
         return sum;
     }
@@ -753,10 +723,8 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel3541;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -780,8 +748,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private javax.swing.JLabel txtProdutoID;
     private javax.swing.JTextField txtProdutoQtd;
     private javax.swing.JTextField txtProdutoQtdDel;
-    private javax.swing.JLabel txtValorDesconto;
-    private javax.swing.JLabel txtValorFinal;
     private javax.swing.JLabel txtValorTotal;
     private javax.swing.JLabel txtVendaID;
     // End of variables declaration//GEN-END:variables

@@ -80,12 +80,11 @@ public class DaoRelatorio {
         }
     }
 
-    public static ArrayList<Relatorio> getListaRelatorio(String di, String dfim) {
+    public static ArrayList<Relatorio> getListaRelatorio(String data) {
         ArrayList<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
         Connection connection = null;
         connection = ConnectionUtils.getConnection();
-        String query = "SELECT * FROM relatorio WHERE data_venda"
-        + " BETWEEN ('" + di + "') AND ('" + dfim + "')";
+        String query = "SELECT * FROM relatorio WHERE data_venda= '" + data + "'";
         Statement st;
         ResultSet rs;
 

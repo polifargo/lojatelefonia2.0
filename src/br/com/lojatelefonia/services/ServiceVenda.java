@@ -16,11 +16,11 @@ import br.com.lojatelefonia.exceptions.ProdutoException;
 public class ServiceVenda {
 
     //Insere um Produto na fonte de dados
-    public static void cadastrarProduto(Double valorTotal, String nomeProduto, int qtdProduto)
+    public static void cadastrarProduto(Double valorUni, Double valorTotal, String nomeProduto, int qtdProduto)
             throws ProdutoException, DataSourceException {
         try {
             //Realiza a chamada de inserção na fonte de dados
-            DaoVenda.inserir(valorTotal, nomeProduto, qtdProduto);
+            DaoVenda.inserir(valorUni, valorTotal, nomeProduto, qtdProduto);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
             e.printStackTrace();
@@ -43,8 +43,8 @@ public class ServiceVenda {
             }
         }
     }
-    
-        //Excluir Produto 
+
+    //Excluir Produto 
     public static void excliurProduto(Integer idVenda, Integer option)
             throws ProdutoException, DataSourceException {
         if (idVenda != null && option == 0) {
@@ -73,7 +73,7 @@ public class ServiceVenda {
             throw new DataSourceException("Erro na fonte de dados", e);
         }
     }
-    
+
     //Retorna produto ao estoque
     public static void atualizarProduto(Integer idProduto, Integer qtd)
             throws ProdutoException, DataSourceException {

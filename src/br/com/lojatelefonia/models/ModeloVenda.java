@@ -3,12 +3,14 @@ package br.com.lojatelefonia.models;
 public class ModeloVenda {
 
     int idVenda;
+    double valorUni;
     double valorVenda;
     String produto;
     int qtd;
 
-    public ModeloVenda(int idVenda, Double valorVenda, String produto, int qtd) {
+    public ModeloVenda(int idVenda, Double valorUni, Double valorVenda, String produto, int qtd) {
         this.idVenda = idVenda;
+        this.valorUni = valorUni;
         this.valorVenda = valorVenda;
         this.produto = produto;
         this.qtd = qtd;
@@ -30,6 +32,10 @@ public class ModeloVenda {
         return qtd;
     }
 
+    public double getValorUni() {
+        return valorUni;
+    }
+
     public void setIdVenda(int idVenda) {
         this.idVenda = idVenda;
     }
@@ -44,6 +50,10 @@ public class ModeloVenda {
 
     public void setQtd(int qtd) {
         this.qtd = qtd;
+    }
+
+    public void setValorUni(double valorUni) {
+        this.valorUni = valorUni;
     }
 
 }
