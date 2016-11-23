@@ -52,6 +52,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        txtProdutoID = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         buttonInserir = new javax.swing.JButton();
@@ -61,10 +63,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         txtProdutoMarca = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         txtProdutoQtd = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtProdutoID = new javax.swing.JLabel();
         txtProdutoFab = new javax.swing.JFormattedTextField();
         txtProdutoValor = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -121,8 +121,13 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("* Duplo clique para atualizar");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("* Duplo clique para editar");
+
+        txtProdutoID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("ID:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,10 +136,14 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -150,11 +159,14 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonDelete)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -180,13 +192,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Número Produto:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("ID:");
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Nome:");
-
-        txtProdutoID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         try {
             txtProdutoFab.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -227,7 +234,6 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel7)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel10)
                     .addComponent(jLabel12)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,8 +246,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                                 .addComponent(txtProdutoMarca, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtProdutoValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                .addComponent(txtProdutoQtd, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtProdutoQtd, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(97, 115, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,10 +269,6 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtProdutoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -419,13 +420,6 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         int i = jTableProdutos.getSelectedRow();
         TableModel model = jTableProdutos.getModel();
         txtProdutoID.setText(model.getValueAt(i, 0).toString());
-        txtProdutoNome.setText(model.getValueAt(i, 1).toString());
-        txtProdutoDesc.setText(model.getValueAt(i, 2).toString());
-        txtProdutoMarca.setText(model.getValueAt(i, 3).toString());
-        txtProdutoNum.setText(model.getValueAt(i, 4).toString());
-        txtProdutoFab.setText(model.getValueAt(i, 5).toString());
-        txtProdutoQtd.setText(model.getValueAt(i, 6).toString());
-        txtProdutoValor.setText(model.getValueAt(i, 7).toString());
         if (evt.getClickCount() > 1) {
             // Contador de cliques
             int j = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja editar?", "Aviso!", JOptionPane.YES_NO_OPTION);

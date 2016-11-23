@@ -157,7 +157,7 @@ public class DaoProduto {
         Connection connection = null;
         connection = ConnectionUtils.getConnection();
 
-        String query = "SELECT * FROM produtos";
+        String query = "SELECT * FROM produtos ORDER BY nome";
         Statement st;
         ResultSet rs;
 

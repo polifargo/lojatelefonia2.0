@@ -50,14 +50,14 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         txtPesquisa = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        clienteInfo = new javax.swing.JPanel();
+        txtClienteID = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        clienteInfo = new javax.swing.JPanel();
         buttonUpdate = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtClienteNasc = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtClienteID = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtClienteNome = new javax.swing.JTextField();
         fTxtClienteCPF = new javax.swing.JFormattedTextField();
@@ -73,7 +73,9 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Sistema Loja Clientes");
-        setPreferredSize(new java.awt.Dimension(900, 590));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(116, 26));
+        setPreferredSize(new java.awt.Dimension(901, 513));
 
         clienteTabela.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Tabela de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
@@ -118,8 +120,13 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/filtroBuscar.png"))); // NOI18N
         jLabel6.setText("Filtro:");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("* Duplo clique para atualizar");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("* Duplo clique para editar");
+
+        txtClienteID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("ID:");
 
         javax.swing.GroupLayout clienteTabelaLayout = new javax.swing.GroupLayout(clienteTabela);
         clienteTabela.setLayout(clienteTabelaLayout);
@@ -131,8 +138,12 @@ public class ClienteTela extends javax.swing.JInternalFrame {
                     .addGroup(clienteTabelaLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtClienteID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, clienteTabelaLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,18 +158,17 @@ public class ClienteTela extends javax.swing.JInternalFrame {
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clienteTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonDelete)
-                    .addComponent(jLabel9))
-                .addGap(5, 5, 5))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel1)
+                    .addComponent(txtClienteID, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         clienteInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Informações do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("ID:");
 
         buttonUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/atualizar.png"))); // NOI18N
         buttonUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -183,8 +193,6 @@ public class ClienteTela extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Telefone:");
-
-        txtClienteID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("CPF:");
@@ -233,7 +241,6 @@ public class ClienteTela extends javax.swing.JInternalFrame {
                         .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)))
@@ -244,7 +251,6 @@ public class ClienteTela extends javax.swing.JInternalFrame {
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clienteInfoLayout.createSequentialGroup()
                         .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtClienteID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtClienteMail, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fTxtClienteCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -263,11 +269,7 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         clienteInfoLayout.setVerticalGroup(
             clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteInfoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtClienteID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtClienteNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -321,10 +323,11 @@ public class ClienteTela extends javax.swing.JInternalFrame {
                     .addComponent(clienteTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(clienteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 242, Short.MAX_VALUE)))
+                        .addGap(0, 210, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
+        getAccessibleContext().setAccessibleName("Gerenciamento de Clientes");
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
@@ -335,12 +338,6 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         int i = jTableClientes.getSelectedRow();
         TableModel model = jTableClientes.getModel();
         txtClienteID.setText(model.getValueAt(i, 0).toString());
-        txtClienteNome.setText(model.getValueAt(i, 1).toString());
-        txtClienteNasc.setText(model.getValueAt(i, 2).toString());
-        txtClienteTel.setText(model.getValueAt(i, 3).toString());
-        txtClienteEnd.setText(model.getValueAt(i, 4).toString());
-        txtClienteMail.setText(model.getValueAt(i, 5).toString());
-        fTxtClienteCPF.setText(model.getValueAt(i, 6).toString());
         // Mostrar linha selecionada no JTextField
         if (evt.getClickCount() > 1) {
             // Contador de cliques

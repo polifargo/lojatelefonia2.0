@@ -122,7 +122,7 @@ public class DaoCliente {
         Connection connection = null;
         connection = ConnectionUtils.getConnection();
 
-        String query = "SELECT * FROM clientes";
+        String query = "SELECT * FROM clientes ORDER BY nome";
         Statement st;
         ResultSet rs;
 
