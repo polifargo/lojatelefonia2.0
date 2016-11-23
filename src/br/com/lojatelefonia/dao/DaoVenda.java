@@ -53,61 +53,6 @@ public class DaoVenda {
         }
     }
 
-    public static void excluirQuantidade(Integer idVenda, Integer qtdProduto) throws SQLException, Exception {
-        //Monta a string de atualização do cliente no BD, utilizando prepared statement
-        String sql = "UPDATE venda SET qtd_fk = ? WHERE idcarrinho = ?";
-        //Conexão para abertura e fechamento
-        Connection connection = null;
-        //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
-        PreparedStatement preparedStatement = null;
-        try {
-            //Abre uma conexão com o banco de dados
-            connection = ConnectionUtils.getConnection();
-            //Cria um statement para execução de instruções SQL
-            preparedStatement = connection.prepareStatement(sql);
-            //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setInt(1, qtdProduto);
-            preparedStatement.setInt(2, idVenda);
-            //Executa o comando no banco de dados
-            preparedStatement.execute();
-        } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-    }
-
-    public static void excluir(Integer idVenda) throws SQLException, Exception {
-        //Monta a string de atualização do cliente no BD, utilizando prepared statement
-        String sql = "DELETE FROM venda WHERE idcarrinho = " + idVenda;
-        //Conexão para abertura e fechamento
-        Connection connection = null;
-        //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
-        PreparedStatement preparedStatement = null;
-        try {
-            //Abre uma conexão com o banco de dados
-            connection = ConnectionUtils.getConnection();
-            //Cria um statement para execução de instruções SQL
-            preparedStatement = connection.prepareStatement(sql);
-            //Executa o comando no banco de dados
-            preparedStatement.execute();
-        } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-    }
-
     public static void excluirCarrinho() throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
         String sql = "DELETE FROM venda";

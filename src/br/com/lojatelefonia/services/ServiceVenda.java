@@ -28,38 +28,6 @@ public class ServiceVenda {
         }
     }
 
-    //Excluir Produto Quantidade
-    public static void excliurProdutoQuantidade(Integer idVenda, Integer qtdProduto, Integer option)
-            throws ProdutoException, DataSourceException {
-        if (idVenda != null && option == 0) {
-            try {
-                //Realiza a exclusão do produto por id
-                DaoVenda.excluirQuantidade(idVenda, qtdProduto);
-                return;
-            } catch (Exception e) {
-                //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
-            }
-        }
-    }
-
-    //Excluir Produto 
-    public static void excliurProduto(Integer idVenda, Integer option)
-            throws ProdutoException, DataSourceException {
-        if (idVenda != null && option == 0) {
-            try {
-                //Realiza a exclusão do produto por id
-                DaoVenda.excluir(idVenda);
-                return;
-            } catch (Exception e) {
-                //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
-            }
-        }
-    }
-
     //Deletar o carrinho
     public static void excluirCarrinho()
             throws ProdutoException, DataSourceException {

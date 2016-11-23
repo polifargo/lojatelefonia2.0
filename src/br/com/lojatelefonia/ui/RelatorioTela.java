@@ -55,7 +55,6 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
         buttonVoltar = new javax.swing.JButton();
         buttonAvancar = new javax.swing.JButton();
         dataRelatorio = new javax.swing.JLabel();
-        buttonInfo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -120,7 +119,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/backwardsArrow.png"))); // NOI18N
+        buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/forward - Cópia_1.png"))); // NOI18N
         buttonVoltar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +127,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/forwardArrow.png"))); // NOI18N
+        buttonAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/forward.png"))); // NOI18N
         buttonAvancar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonAvancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,14 +136,6 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
         });
 
         dataRelatorio.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-
-        buttonInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/inforelatorio.png"))); // NOI18N
-        buttonInfo.setText("Informações");
-        buttonInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonInfoActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/filtroBuscar.png"))); // NOI18N
@@ -165,20 +156,17 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(71, 71, 71)
+                        .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(dataRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
                         .addComponent(buttonDelete))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonInfo)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -201,8 +189,6 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonInfo)
                 .addContainerGap())
         );
 
@@ -269,24 +255,9 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
         ListarRelatorio();
     }//GEN-LAST:event_buttonAvancarActionPerformed
 
-    private void buttonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInfoActionPerformed
-        int i = jTableRelatorio.getSelectedRow();
-        if (i < 0) {
-            JOptionPane.showMessageDialog(this,
-                    "Nenhum relatório selecionado.",
-                    "ERRO",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            RelatorioInfoTela frame = new RelatorioInfoTela();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        }
-    }//GEN-LAST:event_buttonInfoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAvancar;
     private javax.swing.JButton buttonDelete;
-    private javax.swing.JButton buttonInfo;
     private javax.swing.JButton buttonVoltar;
     private javax.swing.JLabel dataRelatorio;
     private javax.swing.JLabel jLabel1;
