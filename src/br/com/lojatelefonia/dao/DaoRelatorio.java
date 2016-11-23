@@ -7,6 +7,7 @@ package br.com.lojatelefonia.dao;
 
 import br.com.lojatelefonia.db.utils.ConnectionUtils;
 import br.com.lojatelefonia.models.Relatorio;
+import br.com.lojatelefonia.models.RelatorioInfo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,6 +79,29 @@ public class DaoRelatorio {
                 connection.close();
             }
         }
+    }
+
+    public static ArrayList<RelatorioInfo> getListaInfoRelatorio() {
+        ArrayList<RelatorioInfo> listaRelatorio = new ArrayList<>();
+        Connection connection = null;
+        connection = ConnectionUtils.getConnection();
+        String query = "SELECT * FROM inforelatorio";
+        Statement st;
+        ResultSet rs;
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(query);
+            RelatorioInfo relatorioinfo;
+            while (rs.next()) {
+                relatorioinfo = new RelatorioInfo(rs.getString("produto"), rs.getInt("qtd_items"),
+                        rs.getDouble("valor_total"));
+                listaRelatorio.add(relatorioinfo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaRelatorio;
     }
 
     public static ArrayList<Relatorio> getListaRelatorio(String data) {

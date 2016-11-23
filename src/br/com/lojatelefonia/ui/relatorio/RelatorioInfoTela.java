@@ -5,12 +5,9 @@
  */
 package br.com.lojatelefonia.ui.relatorio;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import br.com.lojatelefonia.dao.DaoRelatorio;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import br.com.lojatelefonia.db.utils.ConnectionUtils;
 import br.com.lojatelefonia.models.RelatorioInfo;
 
 /**
@@ -129,40 +126,15 @@ public class RelatorioInfoTela extends javax.swing.JFrame {
         });
     }
 
-    public ArrayList<RelatorioInfo> getListaRelatorio() {
-        ArrayList<RelatorioInfo> listaRelatorio = new ArrayList<RelatorioInfo>();
-        Connection connection = null;
-        connection = ConnectionUtils.getConnection();
-
-        String query = "SELECT * FROM INFORELATORIO"; // WHERE ID_VENDA = " + Integer.parseInt(idVenda.getText());
-        Statement st;
-        ResultSet rs;
-
-        try {
-            st = connection.createStatement();
-            rs = st.executeQuery(query);
-            RelatorioInfo relatorioinfo;
-            while (rs.next()) {
-                relatorioinfo = new RelatorioInfo(rs.getInt("id_venda"), rs.getString("produto"), rs.getInt("qtd_items"),
-                        rs.getDouble("valor_total"));
-                listaRelatorio.add(relatorioinfo);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listaRelatorio;
-    }
-
     //Mostrar dados na tabela
     public void mostrarListaRelatorio() {
-        ArrayList<RelatorioInfo> lista = getListaRelatorio();
+        ArrayList<RelatorioInfo> lista = DaoRelatorio.getListaInfoRelatorio();
         DefaultTableModel model = (DefaultTableModel) jTableInfoRelatorio.getModel();
         Object[] row = new Object[4];
         for (int i = 0; i < lista.size(); i++) {
-            row[0] = lista.get(i).getIdvenda();
-            row[1] = lista.get(i).getProduto();
-            row[2] = lista.get(i).getQtd();
-            row[3] = lista.get(i).getValor();
+            row[0] = lista.get(i).getProduto();
+            row[1] = lista.get(i).getQtd();
+            row[2] = lista.get(i).getValor();
             model.addRow(row);
         }
         //idVenda.setText(model.getValueAt(0, 0).toString());

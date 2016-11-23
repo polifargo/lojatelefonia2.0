@@ -29,7 +29,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
      * Creates new form RealizarVenda
      */
     int row2;
-    
+
     public VendaTela() {
         initComponents();
         ListarProdutos();
@@ -140,6 +140,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Carrinho de Compras");
         setToolTipText("");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -481,8 +482,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtClienteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(txtClienteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -615,6 +615,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 txtClienteFinal.setText("");
                 txtValorTotal.setText("");
                 ServiceVenda.excluirCarrinho();
+                ListarVenda();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
