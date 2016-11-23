@@ -28,7 +28,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
     /**
      * Creates new form RealizarVenda
      */
-    int row2;
 
     public VendaTela() {
         initComponents();
@@ -116,13 +115,8 @@ public class VendaTela extends javax.swing.JInternalFrame {
         txtPesquisaProduto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        buttonDeleteList = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        txtProdutoQtdDel = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVenda = new javax.swing.JTable();
-        txtVendaID = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtPesquisaCarrinho = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -259,7 +253,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -278,17 +272,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Carrinho", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
-
-        buttonDeleteList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/excluir.png"))); // NOI18N
-        buttonDeleteList.setText("Excluir do Carrinho");
-        buttonDeleteList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDeleteListActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Quantidade:");
 
         jTableVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -313,12 +296,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTableVenda);
 
-        txtVendaID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtVendaID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("ID:");
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/filtroBuscar.png"))); // NOI18N
         jLabel10.setText("Filtro:");
@@ -336,18 +313,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVendaID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtProdutoQtdDel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonDeleteList, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisaCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -358,19 +326,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonDeleteList, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProdutoQtdDel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtVendaID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPesquisaCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisaCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -531,7 +489,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         int i = jTableProdutos.getSelectedRow();
         TableModel model = jTableProdutos.getModel();
-        row2 = i;
         int comp = Integer.parseInt(txtProdutoQtd.getText());
         int comp2 = Integer.parseInt(model.getValueAt(i, 4).toString());
         if (comp > comp2) {
@@ -568,38 +525,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonAddActionPerformed
 
-    //Botao deletar do carrinho
-    private void buttonDeleteListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteListActionPerformed
-        int i = jTableVenda.getSelectedRow();
-        TableModel model = jTableVenda.getModel();
-        TableModel model2 = jTableProdutos.getModel();
-        if (i < 0) {
-            JOptionPane.showMessageDialog(null, "Por favor selecione um produto.", "ERRO", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int qtd = Integer.parseInt(model.getValueAt(i, 4).toString()) - Integer.parseInt(txtProdutoQtdDel.getText());
-            int qtd2 = Integer.parseInt(model2.getValueAt(row2, 6).toString()) + Integer.parseInt(txtProdutoQtdDel.getText());
-            int id = Integer.parseInt(txtVendaID.getText());
-            int idProduto = Integer.parseInt(txtProdutoID.getText());
-            int option = JOptionPane.showConfirmDialog(this, "Deseja excluir do carrinho o produto selecionado?", "Aviso!", JOptionPane.YES_NO_OPTION);
-            try {
-                ServiceProduto.atualizarProdutoEstoque(idProduto, qtd2);
-                ListarProdutos();
-                ServiceVenda.excliurProdutoQuantidade(id, qtd, option);
-                ListarVenda();
-                int del = Integer.parseInt(model.getValueAt(i, 4).toString());
-                if (del <= 0) {
-                    ServiceVenda.excliurProduto(id, option);
-                    ListarVenda();
-                }
-                txtValorTotal.setText(Double.toString(getSum()));
-                JOptionPane.showMessageDialog(this, "Produto excluido");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-    }//GEN-LAST:event_buttonDeleteListActionPerformed
-
     //Botao realizar vender
     private void buttonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVenderActionPerformed
         DateFormat dateFormat = new SimpleDateFormat("MMMM/yyyy");
@@ -627,8 +552,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private void jTableVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVendaMouseClicked
         int i = jTableVenda.getSelectedRow();
         TableModel model = jTableVenda.getModel();
-        txtProdutoQtdDel.setText(model.getValueAt(i, 4).toString());
-        txtVendaID.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_jTableVendaMouseClicked
 
     //Caso a aba for fechada a tabela de venda eh apagada
@@ -718,15 +641,12 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
-    private javax.swing.JButton buttonDeleteList;
     private javax.swing.JButton buttonVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -748,8 +668,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPesquisaProduto;
     private javax.swing.JLabel txtProdutoID;
     private javax.swing.JTextField txtProdutoQtd;
-    private javax.swing.JTextField txtProdutoQtdDel;
     private javax.swing.JLabel txtValorTotal;
-    private javax.swing.JLabel txtVendaID;
     // End of variables declaration//GEN-END:variables
 }
