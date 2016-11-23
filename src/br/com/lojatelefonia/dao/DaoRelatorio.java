@@ -56,7 +56,7 @@ public class DaoRelatorio {
 
     public static void excluir(Integer idRelatorio) throws SQLException, Exception {
         //Monta a string de atualização do produto no BD, utilizando prepared statement
-        String sql = "DELETE FROM relatorio WHERE id_venda = " + idRelatorio;
+        String sql = "DELETE FROM relatorio WHERE idrelatorio = " + idRelatorio;
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -93,7 +93,7 @@ public class DaoRelatorio {
             rs = st.executeQuery(query);
             Relatorio relatorio;
             while (rs.next()) {
-                relatorio = new Relatorio(rs.getInt("id_venda"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
+                relatorio = new Relatorio(rs.getInt("idrelatorio"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
                         rs.getString("cliente"), rs.getString("data_venda"));
                 listaRelatorio.add(relatorio);
             }

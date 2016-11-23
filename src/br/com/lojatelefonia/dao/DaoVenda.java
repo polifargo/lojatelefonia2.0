@@ -55,7 +55,7 @@ public class DaoVenda {
 
     public static void excluirQuantidade(Integer idVenda, Integer qtdProduto) throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
-        String sql = "UPDATE venda SET qtd_fk = ? WHERE id_venda = ?";
+        String sql = "UPDATE venda SET qtd_fk = ? WHERE idcarrinho = ?";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -84,7 +84,7 @@ public class DaoVenda {
 
     public static void excluir(Integer idVenda) throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
-        String sql = "DELETE FROM venda WHERE id_venda = " + idVenda;
+        String sql = "DELETE FROM venda WHERE idcarrinho = " + idVenda;
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -162,7 +162,7 @@ public class DaoVenda {
             }
         }
     }
-
+    
     //Pegar tabela de venda
     public static ArrayList<ModeloVenda> getListaVendas() {
         ArrayList<ModeloVenda> listaVendas = new ArrayList<ModeloVenda>();
@@ -178,7 +178,7 @@ public class DaoVenda {
             rs = st.executeQuery(query);
             ModeloVenda venda;
             while (rs.next()) {
-                venda = new ModeloVenda(rs.getInt("id_venda"), rs.getDouble("valoruni_fk"), rs.getDouble("valor_fk"), rs.getString("produto_fk"),
+                venda = new ModeloVenda(rs.getInt("idcarrinho"), rs.getDouble("valoruni_fk"), rs.getDouble("valor_fk"), rs.getString("produto_fk"),
                         rs.getInt("qtd_fk"));
                 listaVendas.add(venda);
             }

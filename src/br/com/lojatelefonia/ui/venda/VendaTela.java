@@ -29,7 +29,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
      * Creates new form RealizarVenda
      */
     int row2;
-
+    
     public VendaTela() {
         initComponents();
         ListarProdutos();
@@ -701,7 +701,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
         int rowsCount = jTableVenda.getRowCount();
         double sum = 0;
         for (int i = 0; i < rowsCount; i++) {
-            sum = sum + Double.parseDouble(jTableVenda.getValueAt(i, 1).toString());
+            sum = sum + Double.parseDouble(jTableVenda.getValueAt(i, 2).toString());
         }
         return sum;
     }
