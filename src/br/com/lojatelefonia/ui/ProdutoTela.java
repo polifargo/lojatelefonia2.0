@@ -1,4 +1,4 @@
-package br.com.lojatelefonia.ui.produtos;
+package br.com.lojatelefonia.ui;
 
 import br.com.lojatelefonia.dao.DaoProduto;
 import java.util.ArrayList;

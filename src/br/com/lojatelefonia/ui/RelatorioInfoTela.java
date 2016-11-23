@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.lojatelefonia.ui.relatorio;
+package br.com.lojatelefonia.ui;
 
 import br.com.lojatelefonia.dao.DaoRelatorio;
 import java.util.ArrayList;

@@ -1,8 +1,5 @@
-package br.com.lojatelefonia.ui.principal;
+package br.com.lojatelefonia.ui;
 
-import br.com.lojatelefonia.ui.venda.VendaTela;
-import br.com.lojatelefonia.ui.produtos.ProdutoTela;
-import br.com.lojatelefonia.ui.clientes.ClienteTela;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,7 +10,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import br.com.lojatelefonia.ui.relatorio.RelatorioTela;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 

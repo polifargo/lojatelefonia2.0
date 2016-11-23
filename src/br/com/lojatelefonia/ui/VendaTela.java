@@ -1,4 +1,4 @@
-package br.com.lojatelefonia.ui.venda;
+package br.com.lojatelefonia.ui;
 
 import br.com.lojatelefonia.dao.DaoCliente;
 import br.com.lojatelefonia.dao.DaoProduto;
