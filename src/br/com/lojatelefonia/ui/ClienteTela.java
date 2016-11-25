@@ -412,7 +412,7 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+        } 
         txtClienteID.setText("");
         txtClienteNome.setText("");
         txtClienteNasc.setText("");

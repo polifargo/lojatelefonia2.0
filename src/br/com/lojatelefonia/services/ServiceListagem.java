@@ -16,7 +16,7 @@ import br.com.lojatelefonia.exceptions.ProdutoException;
 public class ServiceListagem {
 
     //Excluir Produto
-    public static void excliurListagem(Integer idListagem, Integer option)
+    public static void excluirListagem(Integer idListagem, Integer option)
             throws ProdutoException, DataSourceException {
         if (idListagem != null && option == 0) {
             try {

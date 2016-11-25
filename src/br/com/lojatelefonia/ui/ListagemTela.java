@@ -207,7 +207,7 @@ public class ListagemTela extends javax.swing.JInternalFrame {
             try {
                 int id = Integer.parseInt(txtListagemID.getText());
                 int option = JOptionPane.showConfirmDialog(this, "Deseja deletar o relatório selecionado?", "Aviso!", JOptionPane.YES_NO_OPTION);
-                ServiceListagem.excliurListagem(id, option);
+                ServiceListagem.excluirListagem(id, option);
                 if (option == 0) {
                     ListarRelatorio();
                     JOptionPane.showMessageDialog(this, "Relatório excluido");
