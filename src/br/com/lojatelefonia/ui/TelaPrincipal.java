@@ -37,6 +37,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             System.exit(0);
         }
     }
+    private void dbError(){
+        if(ServiceUtils.checkConnection() == false){
+            JOptionPane.showMessageDialog(rootPane, "Nao ha conexao com o banco de dados!");
+            JOptionPane.showMessageDialog(rootPane, "Se conecte ao banco de dados e tente novamente!");
+            System.exit(0);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
