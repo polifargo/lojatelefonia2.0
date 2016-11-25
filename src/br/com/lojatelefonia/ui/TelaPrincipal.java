@@ -1,5 +1,6 @@
 package br.com.lojatelefonia.ui;
 
+import br.com.lojatelefonia.services.ServiceUtils;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -19,14 +20,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     ListagemTela relatorioInfo = null;
 
     public TelaPrincipal() {
+        this.dbError();
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH); // Programa abre maximizado
-        this.setLocationRelativeTo(null); //Abre no meio da tela
+        this.setLocationRelativeTo(null);
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Windows look and feel
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro no LookAndFeel");
+        }
+    }
+    private void dbError(){
+        if(ServiceUtils.checkConnection() == false){
+            JOptionPane.showMessageDialog(rootPane, "Nao ha conexao com o banco de dados!");
+            JOptionPane.showMessageDialog(rootPane, "Se conecte ao banco de dados e tente novamente!");
+            System.exit(0);
         }
     }
 
