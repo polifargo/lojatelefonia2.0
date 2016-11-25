@@ -1,15 +1,15 @@
 package br.com.lojatelefonia.models;
 
-public class Relatorio {
+public class Listagem {
 
-    private int idvenda;
+    private int idlistagem;
     private double valorfinal;
     private int qtd;
     private String cliente;
     private String dataVenda;
 
-    public Relatorio(int idvenda, double valorfinal, int qtd, String cliente, String dataVenda) {
-        this.idvenda = idvenda;
+    public Listagem(int idlistagem, double valorfinal, int qtd, String cliente, String dataVenda) {
+        this.idlistagem = idlistagem;
         this.valorfinal = valorfinal;
         this.qtd = qtd;
         this.cliente = cliente;
@@ -20,8 +20,8 @@ public class Relatorio {
         return dataVenda;
     }
 
-    public int getIdvenda() {
-        return idvenda;
+    public int getIdListagem() {
+        return idlistagem;
     }
 
     public double getValorfinal() {

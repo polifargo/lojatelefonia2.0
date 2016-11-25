@@ -1,23 +1,23 @@
 package br.com.lojatelefonia.ui;
 
-import br.com.lojatelefonia.dao.DaoRelatorio;
+import br.com.lojatelefonia.dao.DaoListagem;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import br.com.lojatelefonia.models.Relatorio;
-import br.com.lojatelefonia.services.ServiceRelatorio;
+import br.com.lojatelefonia.models.Listagem;
+import br.com.lojatelefonia.services.ServiceListagem;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class RelatorioTela extends javax.swing.JInternalFrame {
+public class ListagemTela extends javax.swing.JInternalFrame {
 
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM/yyyy");
     Calendar ci = Calendar.getInstance();
 
-    public RelatorioTela() {
+    public ListagemTela() {
         initComponents();
         String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
@@ -27,12 +27,12 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
     //Mostrar dados na tabela
     public void ListarRelatorio() {
         String data2 = sdf.format(ci.getTime());
-        ArrayList<Relatorio> lista = DaoRelatorio.getListaRelatorio(data2);
-        DefaultTableModel model = (DefaultTableModel) jTableRelatorio.getModel();
+        ArrayList<Listagem> lista = DaoListagem.getListaListagem(data2);
+        DefaultTableModel model = (DefaultTableModel) jTableListagem.getModel();
         model.setRowCount(0);
         Object[] row = new Object[5];
         for (int i = 0; i < lista.size(); i++) {
-            row[0] = lista.get(i).getIdvenda();
+            row[0] = lista.get(i).getIdListagem();
             row[1] = lista.get(i).getValorfinal();
             row[2] = lista.get(i).getQtd();
             row[3] = lista.get(i).getCliente();
@@ -47,9 +47,9 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableRelatorio = new javax.swing.JTable();
+        jTableListagem = new javax.swing.JTable();
         buttonDelete = new javax.swing.JButton();
-        txtRelatorioID = new javax.swing.JLabel();
+        txtListagemID = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
         buttonVoltar = new javax.swing.JButton();
@@ -64,12 +64,12 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Listagem de Vendas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        jTableRelatorio.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Relatório", "Valor Total", "Quantidade de Items", "Cliente", "Data da Venda"
+                "ID Listagem", "Valor Total", "Quantidade de Items", "Cliente", "Data da Venda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -80,12 +80,12 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTableRelatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableListagem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableRelatorioMouseClicked(evt);
+                jTableListagemMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableRelatorio);
+        jScrollPane1.setViewportView(jTableListagem);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,7 +108,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
             }
         });
 
-        txtRelatorioID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtListagemID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("ID:");
@@ -151,7 +151,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRelatorioID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtListagemID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +179,7 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRelatorioID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtListagemID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(dataRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,20 +198,20 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
-        if (jTableRelatorio.getSelectedRow() < 0) {
+        if (jTableListagem.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this,
                     "Nenhum relatório selecionado.",
                     "ERRO",
                     JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                int id = Integer.parseInt(txtRelatorioID.getText());
+                int id = Integer.parseInt(txtListagemID.getText());
                 int option = JOptionPane.showConfirmDialog(this, "Deseja deletar o relatório selecionado?", "Aviso!", JOptionPane.YES_NO_OPTION);
-                ServiceRelatorio.excliurRelatorio(id, option);
+                ServiceListagem.excliurListagem(id, option);
                 if (option == 0) {
                     ListarRelatorio();
                     JOptionPane.showMessageDialog(this, "Relatório excluido");
-                    txtRelatorioID.setText("");
+                    txtListagemID.setText("");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -220,17 +220,17 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
-    private void jTableRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRelatorioMouseClicked
-        int i = jTableRelatorio.getSelectedRow();
-        TableModel model = jTableRelatorio.getModel();
-        txtRelatorioID.setText(model.getValueAt(i, 0).toString());
-    }//GEN-LAST:event_jTableRelatorioMouseClicked
+    private void jTableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListagemMouseClicked
+        int i = jTableListagem.getSelectedRow();
+        TableModel model = jTableListagem.getModel();
+        txtListagemID.setText(model.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_jTableListagemMouseClicked
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) jTableRelatorio.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTableListagem.getModel();
         sorter = new TableRowSorter<TableModel>(model);
-        jTableRelatorio.setRowSorter(sorter);
+        jTableListagem.setRowSorter(sorter);
         String text = txtPesquisa.getText();
         if (text.length() == 0) {
             sorter.setRowFilter(null);
@@ -264,8 +264,8 @@ public class RelatorioTela extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableRelatorio;
+    private javax.swing.JTable jTableListagem;
+    private javax.swing.JLabel txtListagemID;
     private javax.swing.JTextField txtPesquisa;
-    private javax.swing.JLabel txtRelatorioID;
     // End of variables declaration//GEN-END:variables
 }

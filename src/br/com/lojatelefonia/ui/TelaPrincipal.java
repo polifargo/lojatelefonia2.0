@@ -16,7 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     ClienteTela clienteInfo = null;
     ProdutoTela produtoInfo = null;
     VendaTela realizarVenda = null;
-    RelatorioTela relatorioInfo = null;
+    ListagemTela relatorioInfo = null;
 
     public TelaPrincipal() {
         initComponents();
@@ -168,7 +168,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
         if (relatorioInfo == null || !relatorioInfo.isDisplayable()) {
-            relatorioInfo = new RelatorioTela();
+            relatorioInfo = new ListagemTela();
             desktop.add(relatorioInfo);
             this.openFrameInCenter(relatorioInfo);
         }

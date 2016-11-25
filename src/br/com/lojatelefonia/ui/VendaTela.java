@@ -18,7 +18,7 @@ import br.com.lojatelefonia.models.Cliente;
 import br.com.lojatelefonia.models.ModeloVenda;
 import br.com.lojatelefonia.models.Produto;
 import br.com.lojatelefonia.services.ServiceProduto;
-import br.com.lojatelefonia.services.ServiceRelatorio;
+import br.com.lojatelefonia.services.ServiceListagem;
 import br.com.lojatelefonia.services.ServiceVenda;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -289,11 +289,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTableVenda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableVendaMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(jTableVenda);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -315,7 +310,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisaCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -534,7 +528,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente nao selecionado", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                ServiceRelatorio.cadastrarRelatorio(Double.parseDouble(txtValorTotal.getText()), txtClienteFinal.getText(), getQtd(), dateFormat.format(date));
+                ServiceListagem.cadastrarListagem(Double.parseDouble(txtValorTotal.getText()), txtClienteFinal.getText(), getQtd(), dateFormat.format(date));
                 JOptionPane.showMessageDialog(this, "Compra realizada com sucesso!");
                 txtClienteFinal.setText("");
                 txtValorTotal.setText("");
@@ -546,12 +540,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_buttonVenderActionPerformed
-
-    //Pega informacoes do carrinho com o clique
-    private void jTableVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVendaMouseClicked
-        int i = jTableVenda.getSelectedRow();
-        TableModel model = jTableVenda.getModel();
-    }//GEN-LAST:event_jTableVendaMouseClicked
 
     //Caso a aba for fechada a tabela de venda eh apagada
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed

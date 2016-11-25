@@ -6,8 +6,7 @@
 package br.com.lojatelefonia.dao;
 
 import br.com.lojatelefonia.db.utils.ConnectionUtils;
-import br.com.lojatelefonia.models.Relatorio;
-import br.com.lojatelefonia.models.RelatorioInfo;
+import br.com.lojatelefonia.models.Listagem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,12 +18,12 @@ import java.util.ArrayList;
  *
  * @author matheus.esanto1
  */
-public class DaoRelatorio {
+public class DaoListagem {
 
     public static void inserir(Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
             throws SQLException, Exception {
         //Monta a string de inserção de um produto no BD, utilizando os dados do produtos passados como parâmetro
-        String sql = "INSERT INTO relatorio (valor_total, cliente, qtd_items, data_venda) "
+        String sql = "INSERT INTO listagem (valor_total, cliente, qtd_items, data_venda) "
                 + "VALUES (?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -55,9 +54,9 @@ public class DaoRelatorio {
         }
     }
 
-    public static void excluir(Integer idRelatorio) throws SQLException, Exception {
+    public static void excluir(Integer idListagem) throws SQLException, Exception {
         //Monta a string de atualização do produto no BD, utilizando prepared statement
-        String sql = "DELETE FROM relatorio WHERE idrelatorio = " + idRelatorio;
+        String sql = "DELETE FROM listagem WHERE idlistagem = " + idListagem;
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -80,50 +79,27 @@ public class DaoRelatorio {
             }
         }
     }
-
-    public static ArrayList<RelatorioInfo> getListaInfoRelatorio() {
-        ArrayList<RelatorioInfo> listaRelatorio = new ArrayList<>();
+    
+    public static ArrayList<Listagem> getListaListagem(String data) {
+        ArrayList<Listagem> listaListagem = new ArrayList<Listagem>();
         Connection connection = null;
         connection = ConnectionUtils.getConnection();
-        String query = "SELECT * FROM inforelatorio";
+        String query = "SELECT * FROM listagem WHERE data_venda= '" + data + "'";
         Statement st;
         ResultSet rs;
 
         try {
             st = connection.createStatement();
             rs = st.executeQuery(query);
-            RelatorioInfo relatorioinfo;
+            Listagem relatorio;
             while (rs.next()) {
-                relatorioinfo = new RelatorioInfo(rs.getString("produto"), rs.getInt("qtd_items"),
-                        rs.getDouble("valor_total"));
-                listaRelatorio.add(relatorioinfo);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listaRelatorio;
-    }
-
-    public static ArrayList<Relatorio> getListaRelatorio(String data) {
-        ArrayList<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
-        Connection connection = null;
-        connection = ConnectionUtils.getConnection();
-        String query = "SELECT * FROM relatorio WHERE data_venda= '" + data + "'";
-        Statement st;
-        ResultSet rs;
-
-        try {
-            st = connection.createStatement();
-            rs = st.executeQuery(query);
-            Relatorio relatorio;
-            while (rs.next()) {
-                relatorio = new Relatorio(rs.getInt("idrelatorio"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
+                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
                         rs.getString("cliente"), rs.getString("data_venda"));
-                listaRelatorio.add(relatorio);
+                listaListagem.add(relatorio);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listaRelatorio;
+        return listaListagem;
     }
 }
