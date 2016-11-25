@@ -22,6 +22,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         this.dbError();
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -30,8 +31,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro no LookAndFeel");
         }
     }
-    private void dbError(){
-        if(ServiceUtils.checkConnection() == false){
+
+    private void dbError() {
+        if (ServiceUtils.checkConnection() == false) {
             JOptionPane.showMessageDialog(rootPane, "Nao ha conexao com o banco de dados!");
             JOptionPane.showMessageDialog(rootPane, "Se conecte ao banco de dados e tente novamente!");
             System.exit(0);
