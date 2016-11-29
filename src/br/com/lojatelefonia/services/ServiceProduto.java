@@ -20,10 +20,12 @@ public class ServiceProduto {
             String numProduto, String fabriProduto, Integer qtdProduto, Double valorProduto)
             throws ProdutoException, DataSourceException {
         //Realização de validações de negócio
-        if ("".equals(nomeProduto) || "".equals(descProduto) || "".equals(marcaProduto)
+        if ("".equals(nomeProduto) || "".equals(marcaProduto)
                 || "".equals(numProduto) || "  /  /    ".equals(fabriProduto)
                 || qtdProduto <= 0 || valorProduto <= 0) {
             throw new ProdutoException("Um ou mais campos estão vazios, convém preenche-los!");
+        } else if ("Selecione...".equals(descProduto)) {
+            throw new ProdutoException("Descrição do item não definida");
         }
         try {
             //Realiza a chamada de inserção na fonte de dados
@@ -40,10 +42,12 @@ public class ServiceProduto {
             String marcaProduto, String numProduto, String fabriProduto, Integer qtdProduto,
             Double valorProduto) throws ProdutoException, DataSourceException {
         //Realização de validações de negócio
-        if ("".equals(nomeProduto) || "".equals(descProduto) || "".equals(marcaProduto)
+        if ("".equals(nomeProduto) || "".equals(marcaProduto)
                 || "".equals(numProduto) || "  /  /    ".equals(fabriProduto)
                 || qtdProduto == null || valorProduto == null) {
             throw new ProdutoException("Um ou mais campos estão vazios, convém preenche-los!");
+        } else if ("Selecione...".equals(descProduto)) {
+            throw new ProdutoException("Descrição do item não definida");
         }
         try {
             //Realiza a chamada de atualização na fonte de dados

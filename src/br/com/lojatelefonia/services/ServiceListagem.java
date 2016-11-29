@@ -15,23 +15,7 @@ import br.com.lojatelefonia.exceptions.ProdutoException;
  */
 public class ServiceListagem {
 
-    //Excluir Produto
-    public static void excluirListagem(Integer idListagem, Integer option)
-            throws ProdutoException, DataSourceException {
-        if (idListagem != null && option == 0) {
-            try {
-                //Realiza a exclusão do produto por id
-                DaoListagem.excluir(idListagem);
-                return;
-            } catch (Exception e) {
-                //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
-                e.printStackTrace();
-                throw new DataSourceException("Erro na fonte de dados", e);
-            }
-        }
-    }
-
-    //Insere um Produto na fonte de dados
+    //Insere uma Listagem na fonte de dados
     public static void cadastrarListagem(Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
             throws ProdutoException, DataSourceException {
         try {

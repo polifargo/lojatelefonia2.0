@@ -59,7 +59,6 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         buttonInserir = new javax.swing.JButton();
         txtProdutoNome = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtProdutoDesc = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtProdutoMarca = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -71,6 +70,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         buttonUpdate = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtProdutoNum = new javax.swing.JFormattedTextField();
+        cbProdutoDesc = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -126,7 +126,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
 
         txtProdutoID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("ID:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -142,7 +142,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -159,14 +159,14 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonDelete)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtProdutoID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -223,6 +223,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        cbProdutoDesc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Celular", "Case", "Película", "Fone de Ouvido" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -240,19 +242,20 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProdutoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtProdutoFab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                 .addComponent(txtProdutoMarca, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtProdutoValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                 .addComponent(txtProdutoQtd, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(97, 115, Short.MAX_VALUE))
+                        .addGap(127, 145, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtProdutoNome)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtProdutoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtProdutoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbProdutoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -275,7 +278,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtProdutoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbProdutoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -320,7 +323,9 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 203, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -331,7 +336,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
         int produtoId = Integer.parseInt(txtProdutoID.getText());
         String produtoNome = txtProdutoNome.getText();
-        String produtoDesc = txtProdutoDesc.getText();
+        String produtoDesc = cbProdutoDesc.getSelectedItem().toString();
         String produtoMarca = txtProdutoMarca.getText();
         String produtoNum = txtProdutoNum.getText();
         String produtoFabri = txtProdutoFab.getText();
@@ -348,8 +353,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         }
         txtProdutoID.setText("");
         txtProdutoNome.setText("");
-        txtProdutoDesc.setText("");
         txtProdutoMarca.setText("");
+        cbProdutoDesc.setSelectedIndex(0);
         txtProdutoNum.setText("");
         txtProdutoFab.setText("");
         txtProdutoQtd.setText("");
@@ -376,8 +381,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             }
             txtProdutoID.setText("");
             txtProdutoNome.setText("");
-            txtProdutoDesc.setText("");
             txtProdutoMarca.setText("");
+            cbProdutoDesc.setSelectedIndex(0);
             txtProdutoNum.setText("");
             txtProdutoFab.setText("");
             txtProdutoQtd.setText("");
@@ -389,7 +394,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
     //Botao inserir item da tablea
     private void buttonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInserirActionPerformed
         String produtoNome = txtProdutoNome.getText();
-        String produtoDesc = txtProdutoDesc.getText();
+        String produtoDesc = cbProdutoDesc.getSelectedItem().toString();
         String produtoMarca = txtProdutoMarca.getText();
         String produtoNum = txtProdutoNum.getText();
         String produtoFabri = txtProdutoFab.getText();
@@ -406,8 +411,8 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         }
         txtProdutoID.setText("");
         txtProdutoNome.setText("");
-        txtProdutoDesc.setText("");
         txtProdutoMarca.setText("");
+        cbProdutoDesc.setSelectedIndex(0);
         txtProdutoNum.setText("");
         txtProdutoFab.setText("");
         txtProdutoQtd.setText("");
@@ -427,7 +432,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
                 buttonUpdate.setEnabled(true);
                 txtProdutoID.setText(model.getValueAt(i, 0).toString());
                 txtProdutoNome.setText(model.getValueAt(i, 1).toString());
-                txtProdutoDesc.setText(model.getValueAt(i, 2).toString());
+                cbProdutoDesc.setSelectedItem(model.getValueAt(i, 2));
                 txtProdutoMarca.setText(model.getValueAt(i, 3).toString());
                 txtProdutoNum.setText(model.getValueAt(i, 4).toString());
                 txtProdutoFab.setText(model.getValueAt(i, 5).toString());
@@ -457,6 +462,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonInserir;
     private javax.swing.JButton buttonUpdate;
+    private javax.swing.JComboBox<String> cbProdutoDesc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -472,7 +478,6 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField txtPesquisa;
-    private javax.swing.JTextField txtProdutoDesc;
     private javax.swing.JFormattedTextField txtProdutoFab;
     private javax.swing.JLabel txtProdutoID;
     private javax.swing.JTextField txtProdutoMarca;

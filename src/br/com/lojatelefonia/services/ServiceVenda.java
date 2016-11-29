@@ -42,7 +42,7 @@ public class ServiceVenda {
         }
     }
 
-    //Retorna produto ao estoque
+    //Atualiza estoque do produto
     public static void atualizarProduto(Integer idProduto, Integer qtd)
             throws ProdutoException, DataSourceException {
         try {
