@@ -9,6 +9,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Produto;
 import br.com.lojatelefonia.services.ServiceProduto;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProdutoTela extends javax.swing.JInternalFrame {
 
@@ -70,7 +72,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         buttonUpdate = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtProdutoNum = new javax.swing.JFormattedTextField();
-        cbProdutoDesc = new javax.swing.JComboBox<>();
+        cbProdutoDesc = new javax.swing.JComboBox<String>();
 
         setClosable(true);
         setIconifiable(true);
@@ -200,6 +202,11 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtProdutoFab.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtProdutoFabFocusLost(evt);
+            }
+        });
 
         txtProdutoValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
@@ -223,7 +230,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        cbProdutoDesc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Celular", "Case", "Película", "Fone de Ouvido" }));
+        cbProdutoDesc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Celular", "Case", "Película", "Fone de Ouvido" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -456,6 +463,24 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
         }
     }//GEN-LAST:event_txtPesquisaKeyReleased
+
+    private void txtProdutoFabFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProdutoFabFocusLost
+        String dataFabText = txtProdutoFab.getText();
+        Date dataFabVal = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+            dataFabVal = sdf.parse(dataFabText);
+        }
+        catch(Exception e) {
+            
+        }
+        
+        if (dataFabVal == null) {
+            txtProdutoFab.setText("");
+            txtProdutoFab.setValue(null);
+        }     
+    }//GEN-LAST:event_txtProdutoFabFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

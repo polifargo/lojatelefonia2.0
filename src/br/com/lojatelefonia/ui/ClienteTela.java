@@ -9,6 +9,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Cliente;
 import br.com.lojatelefonia.services.ServiceCliente;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ClienteTela extends javax.swing.JInternalFrame {
 
@@ -193,6 +195,11 @@ public class ClienteTela extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         txtClienteNasc.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+        txtClienteNasc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtClienteNascFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Telefone:");
@@ -452,6 +459,24 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         fTxtClienteCPF.setText("");
         buttonUpdate.setEnabled(false);
     }//GEN-LAST:event_buttonUpdateActionPerformed
+
+    private void txtClienteNascFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClienteNascFocusLost
+        String dataNascText = txtClienteNasc.getText();
+        Date dataNascVal = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+            dataNascVal = sdf.parse(dataNascText);
+        }
+        catch(Exception e) {
+            
+        }
+        
+        if (dataNascVal == null) {
+            txtClienteNasc.setText("");
+            txtClienteNasc.setValue(null);
+        }        
+    }//GEN-LAST:event_txtClienteNascFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
