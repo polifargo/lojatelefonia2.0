@@ -28,13 +28,14 @@ public class ListagemTela extends javax.swing.JInternalFrame {
         ArrayList<Listagem> lista = DaoListagem.getListaListagem(data2);
         DefaultTableModel model = (DefaultTableModel) jTableListagem.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[5];
+        Object[] row = new Object[6];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getIdListagem();
-            row[1] = lista.get(i).getValorfinal();
-            row[2] = lista.get(i).getQtd();
-            row[3] = lista.get(i).getCliente();
-            row[4] = lista.get(i).getDataVenda();
+            row[1] = lista.get(i).getProduto();
+            row[2] = lista.get(i).getValorfinal();
+            row[3] = lista.get(i).getQtd();
+            row[4] = lista.get(i).getCliente();
+            row[5] = lista.get(i).getDataVenda();
             model.addRow(row);
         }
     }
@@ -64,11 +65,11 @@ public class ListagemTela extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID Listagem", "Valor Total", "Quantidade de Items", "Cliente", "Data da Venda"
+                "ID Listagem", "Produtos", "Valor Total", "Quantidade de Items", "Cliente", "Data da Venda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

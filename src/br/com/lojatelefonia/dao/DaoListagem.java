@@ -20,11 +20,11 @@ import java.util.ArrayList;
  */
 public class DaoListagem {
 
-    public static void inserir(Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
+    public static void inserir(String Produto, Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
             throws SQLException, Exception {
         //Monta a string de inserção de um produto no BD, utilizando os dados do produtos passados como parâmetro
-        String sql = "INSERT INTO listagem (valor_total, cliente, qtd_items, data_venda) "
-                + "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO listagem (produto, valor_total, cliente, qtd_items, data_venda) "
+                + "VALUES (?, ?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -35,10 +35,11 @@ public class DaoListagem {
             //Cria um statement para execução de instruções SQL
             preparedStatement = connection.prepareStatement(sql);
             //Configura os parâmetros do "PreparedStatement"
-            preparedStatement.setDouble(1, valorTotal);
-            preparedStatement.setString(2, Cliente);
-            preparedStatement.setInt(3, qtdItems);
-            preparedStatement.setString(4, dataVenda);
+            preparedStatement.setString(1, Produto);
+            preparedStatement.setDouble(2, valorTotal);
+            preparedStatement.setString(3, Cliente);
+            preparedStatement.setInt(4, qtdItems);
+            preparedStatement.setString(5, dataVenda);
 
             //Executa o comando no banco de dados
             preparedStatement.execute();
@@ -93,7 +94,7 @@ public class DaoListagem {
             rs = st.executeQuery(query);
             Listagem relatorio;
             while (rs.next()) {
-                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
+                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getString("produto"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
                         rs.getString("cliente"), rs.getString("data_venda"));
                 listaListagem.add(relatorio);
             }

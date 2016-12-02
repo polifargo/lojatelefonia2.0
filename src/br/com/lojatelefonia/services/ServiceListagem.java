@@ -16,11 +16,11 @@ import br.com.lojatelefonia.exceptions.ProdutoException;
 public class ServiceListagem {
 
     //Insere uma Listagem na fonte de dados
-    public static void cadastrarListagem(Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
+    public static void cadastrarListagem(String Produtos, Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
             throws ProdutoException, DataSourceException {
         try {
             //Realiza a chamada de inserção na fonte de dados
-            DaoListagem.inserir(valorTotal, Cliente, qtdItems, dataVenda);
+            DaoListagem.inserir(Produtos, valorTotal, Cliente, qtdItems, dataVenda);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
             e.printStackTrace();
