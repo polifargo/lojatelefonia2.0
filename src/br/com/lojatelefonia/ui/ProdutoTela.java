@@ -10,6 +10,7 @@ import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Produto;
 import br.com.lojatelefonia.services.ServiceProduto;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ProdutoTela extends javax.swing.JInternalFrame {
@@ -434,18 +435,15 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         txtProdutoID.setText(model.getValueAt(i, 0).toString());
         if (evt.getClickCount() > 1) {
             // Contador de cliques
-            int j = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja editar?", "Aviso!", JOptionPane.YES_NO_OPTION);
-            if (j == JOptionPane.YES_OPTION) {
-                buttonUpdate.setEnabled(true);
-                txtProdutoID.setText(model.getValueAt(i, 0).toString());
-                txtProdutoNome.setText(model.getValueAt(i, 1).toString());
-                cbProdutoDesc.setSelectedItem(model.getValueAt(i, 2));
-                txtProdutoMarca.setText(model.getValueAt(i, 3).toString());
-                txtProdutoNum.setText(model.getValueAt(i, 4).toString());
-                txtProdutoFab.setText(model.getValueAt(i, 5).toString());
-                txtProdutoQtd.setText(model.getValueAt(i, 6).toString());
-                txtProdutoValor.setText(model.getValueAt(i, 7).toString());
-            }
+            buttonUpdate.setEnabled(true);
+            txtProdutoID.setText(model.getValueAt(i, 0).toString());
+            txtProdutoNome.setText(model.getValueAt(i, 1).toString());
+            cbProdutoDesc.setSelectedItem(model.getValueAt(i, 2));
+            txtProdutoMarca.setText(model.getValueAt(i, 3).toString());
+            txtProdutoNum.setText(model.getValueAt(i, 4).toString());
+            txtProdutoFab.setText(model.getValueAt(i, 5).toString());
+            txtProdutoQtd.setText(model.getValueAt(i, 6).toString());
+            txtProdutoValor.setText(model.getValueAt(i, 7).toString());
         }
     }//GEN-LAST:event_jTableProdutosMouseClicked
 
@@ -471,15 +469,13 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.setLenient(false);
             dataFabVal = sdf.parse(dataFabText);
+        } catch (Exception e) {
+
         }
-        catch(Exception e) {
-            
-        }
-        
         if (dataFabVal == null) {
             txtProdutoFab.setText("");
             txtProdutoFab.setValue(null);
-        }     
+        }
     }//GEN-LAST:event_txtProdutoFabFocusLost
 
 

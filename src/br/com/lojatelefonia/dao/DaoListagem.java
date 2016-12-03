@@ -23,7 +23,7 @@ public class DaoListagem {
     public static void inserir(String Produto, Double valorTotal, String Cliente, Integer qtdItems, String dataVenda)
             throws SQLException, Exception {
         //Monta a string de inserção de um produto no BD, utilizando os dados do produtos passados como parâmetro
-        String sql = "INSERT INTO listagem (produto, valor_total, cliente, qtd_items, data_venda) "
+        String sql = "INSERT INTO listagem (produtos, valor_total, cliente, qtd_items, data_venda) "
                 + "VALUES (?, ?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -94,7 +94,7 @@ public class DaoListagem {
             rs = st.executeQuery(query);
             Listagem relatorio;
             while (rs.next()) {
-                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getString("produto"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
+                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getString("produtos"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
                         rs.getString("cliente"), rs.getString("data_venda"));
                 listaListagem.add(relatorio);
             }

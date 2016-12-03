@@ -351,8 +351,6 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         // Mostrar linha selecionada no JTextField
         if (evt.getClickCount() > 1) {
             // Contador de cliques
-            int j = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja editar?", "Aviso!", JOptionPane.YES_NO_OPTION);
-            if (j == JOptionPane.YES_OPTION) {
                 buttonUpdate.setEnabled(true);
                 txtClienteID.setText(model.getValueAt(i, 0).toString());
                 txtClienteNome.setText(model.getValueAt(i, 1).toString());
@@ -361,7 +359,6 @@ public class ClienteTela extends javax.swing.JInternalFrame {
                 txtClienteEnd.setText(model.getValueAt(i, 4).toString());
                 txtClienteMail.setText(model.getValueAt(i, 5).toString());
                 fTxtClienteCPF.setText(model.getValueAt(i, 6).toString());
-            }
         }
     }//GEN-LAST:event_jTableClientesMouseClicked
 
