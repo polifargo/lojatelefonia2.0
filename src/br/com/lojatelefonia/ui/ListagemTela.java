@@ -11,7 +11,8 @@ import java.util.Calendar;
 
 public final class ListagemTela extends javax.swing.JInternalFrame {
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MMMM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("MMMM/yyyy");
+    SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
     Calendar ci = Calendar.getInstance();
 
     public ListagemTela() {
@@ -23,7 +24,7 @@ public final class ListagemTela extends javax.swing.JInternalFrame {
 
     //Mostrar dados na tabela
     public void ListarRelatorio() {
-        String data = sdf.format(ci.getTime());
+        String data = sdf2.format(ci.getTime());
         ArrayList<Listagem> lista = DaoListagem.getListaListagem(data);
         DefaultTableModel model = (DefaultTableModel) jTableListagem.getModel();
         model.setRowCount(0);
