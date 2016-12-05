@@ -6,16 +6,22 @@ public class Cliente {
     private String nome;
     private String nasc;
     private String telefone;
-    private String end;
+    private String rua;
+    private String complemento;
+    private String cep;
+    private String numCasa;
     private String email;
     private String cpf;
 
-    public Cliente(Integer id, String nome, String nasc, String telefone, String end, String email, String cpf) {
+    public Cliente(Integer id, String nome, String nasc, String telefone, String rua, String complemento, String cep, String numCasa, String email, String cpf) {
         this.id = id;
         this.nome = nome;
         this.nasc = nasc;
         this.telefone = telefone;
-        this.end = end;
+        this.rua = rua;
+        this.complemento = complemento;
+        this.cep = cep;
+        this.numCasa = numCasa;
         this.email = email;
         this.cpf = cpf;
     }
@@ -37,8 +43,20 @@ public class Cliente {
         return telefone;
     }
 
-    public String getEnd() {
-        return end;
+    public String getRua() {
+        return rua;
+    }
+    
+    public String getComplemento() {
+        return complemento;
+    }
+    
+    public String getCep() {
+        return cep;
+    }
+    
+    public String getNumCasa() {
+        return numCasa;
     }
 
     public String getEmail() {

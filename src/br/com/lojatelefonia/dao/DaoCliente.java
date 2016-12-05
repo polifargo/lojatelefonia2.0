@@ -20,12 +20,12 @@ import java.util.ArrayList;
  */
 public class DaoCliente {
 
-    public static void inserir(String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) 
-            throws SQLException, Exception {
+    public static void inserir(String nomeCliente, String nascCliente,String telefoneCliente, 
+            String ruaCliente,String compCliente, String cepCliente, String numCasaCliente, 
+            String emailCliente, String cpfCliente) throws SQLException, Exception {
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO clientes (nome, nascimento, telefone, endereco, email, CPF) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (nome, nascimento, telefone, rua, complemento, numcasa, email, CPF) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -39,9 +39,12 @@ public class DaoCliente {
             preparedStatement.setString(1, nomeCliente);
             preparedStatement.setString(2, nascCliente);
             preparedStatement.setString(3, telefoneCliente);
-            preparedStatement.setString(4, endCliente);
-            preparedStatement.setString(5, emailCliente);
-            preparedStatement.setString(6, cpfCliente);
+            preparedStatement.setString(4, ruaCliente);
+            preparedStatement.setString(5, compCliente);
+            preparedStatement.setString(6, cepCliente);
+            preparedStatement.setString(7, numCasaCliente);
+            preparedStatement.setString(8, emailCliente);
+            preparedStatement.setString(9, cpfCliente);
 
             //Executa o comando no banco de dados
             preparedStatement.execute();
@@ -57,12 +60,13 @@ public class DaoCliente {
         }
     }
 
-    public static void atualizar(Integer idCliente, String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) 
+    public static void atualizar(Integer idCliente, String nomeCliente, String nascCliente, 
+            String telefoneCliente, String ruaCliente,String compCliente, String cepCliente, 
+            String numCasaCliente, String emailCliente, String cpfCliente) 
             throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
-        String sql = "UPDATE clientes SET nome=?, nascimento=?, telefone=?, endereco=?, email=?, cpf=? "
-                + "WHERE id=?";
+        String sql = "UPDATE clientes SET nome=?, nascimento=?, telefone=?, rua=?, complemento=?, cep=?, "
+                + "numcasa=?, email=?, cpf=? WHERE id=?";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -76,10 +80,13 @@ public class DaoCliente {
             preparedStatement.setString(1, nomeCliente);
             preparedStatement.setString(2, nascCliente);
             preparedStatement.setString(3, telefoneCliente);
-            preparedStatement.setString(4, endCliente);
-            preparedStatement.setString(5, emailCliente);
-            preparedStatement.setString(6, cpfCliente);
-            preparedStatement.setInt(7, idCliente);
+            preparedStatement.setString(4, ruaCliente);
+            preparedStatement.setString(5, compCliente);
+            preparedStatement.setString(6, cepCliente);
+            preparedStatement.setString(7, numCasaCliente);
+            preparedStatement.setString(8, emailCliente);
+            preparedStatement.setString(9, cpfCliente);
+            preparedStatement.setInt(10, idCliente);
 
             //Executa o comando no banco de dados
             preparedStatement.execute();
@@ -138,8 +145,9 @@ public class DaoCliente {
             while (rs.next()) {
                 cliente = new Cliente(rs.getInt("id"), rs.getString("nome"), 
                         rs.getString("nascimento"), rs.getString("telefone"), 
-                        rs.getString("endereco"), rs.getString("email"), 
-                        rs.getString("cpf"));
+                        rs.getString("rua"),rs.getString("complemento"), 
+                        rs.getString("cep"),rs.getString("numcasa"), 
+                        rs.getString("email"), rs.getString("cpf"));
                 listaClientes.add(cliente);
             }
         } catch (Exception e) {

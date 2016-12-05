@@ -29,15 +29,18 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         ArrayList<Cliente> lista = DaoCliente.getListaClientes();
         DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[7];
+        Object[] row = new Object[10];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getId();
             row[1] = lista.get(i).getNome();
             row[2] = lista.get(i).getNasc();
             row[3] = lista.get(i).getTelefone();
-            row[4] = lista.get(i).getEnd();
-            row[5] = lista.get(i).getEmail();
-            row[6] = lista.get(i).getCpf();
+            row[4] = lista.get(i).getRua();
+            row[5] = lista.get(i).getComplemento();
+            row[6] = lista.get(i).getCep();
+            row[7] = lista.get(i).getNumCasa();
+            row[8] = lista.get(i).getEmail();
+            row[9] = lista.get(i).getCpf();
             model.addRow(row);
         }
     }
@@ -60,7 +63,7 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         fTxtClienteCPF = new javax.swing.JFormattedTextField();
         txtClienteNasc = new javax.swing.JFormattedTextField();
         txtClienteTel = new javax.swing.JFormattedTextField();
-        txtClienteEnd = new javax.swing.JTextField();
+        txtClienteRua = new javax.swing.JTextField();
         txtClienteMail = new javax.swing.JTextField();
         buttonUpdate = new javax.swing.JButton();
         buttonInserir = new javax.swing.JButton();
@@ -70,6 +73,12 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtClienteComplemento = new javax.swing.JTextField();
+        txtClienteCep = new javax.swing.JFormattedTextField();
+        txtClienteNumCasa = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -87,11 +96,11 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Data de Nascimento", "Telefone", "Endereço", "E-Mail", "CPF"
+                "ID", "Nome", "Data de Nascimento", "Telefone", "Rua", "Complemento", "Cep", "Numéro da Casa", "E-Mail", "CPF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -146,7 +155,7 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
                         .addComponent(txtClienteID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, clienteTabelaLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,52 +238,80 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         jLabel5.setText("CPF:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Endereço:");
+        jLabel7.setText("Rua");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("E-Mail:");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Número da casa");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Complemento");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Cep");
+
+        try {
+            txtClienteCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtClienteNumCasa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout clienteInfoLayout = new javax.swing.GroupLayout(clienteInfo);
         clienteInfo.setLayout(clienteInfoLayout);
         clienteInfoLayout.setHorizontalGroup(
             clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteInfoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonInserir)
+            .addGroup(clienteInfoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonUpdate)
-                .addContainerGap())
+                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(clienteInfoLayout.createSequentialGroup()
+                        .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtClienteNasc, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtClienteTel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                        .addGap(0, 102, Short.MAX_VALUE))
+                    .addGroup(clienteInfoLayout.createSequentialGroup()
+                        .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtClienteRua, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtClienteNome)
+                            .addComponent(txtClienteComplemento))
+                        .addContainerGap())))
             .addGroup(clienteInfoLayout.createSequentialGroup()
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clienteInfoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(39, 39, 39)
                         .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel10)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteInfoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clienteInfoLayout.createSequentialGroup()
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtClienteMail, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fTxtClienteCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtClienteNasc, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtClienteTel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
-                        .addGap(0, 47, Short.MAX_VALUE))
-                    .addGroup(clienteInfoLayout.createSequentialGroup()
-                        .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtClienteEnd, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtClienteNome))
-                        .addGap(15, 15, 15))))
+                            .addComponent(txtClienteCep, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtClienteNumCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteInfoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonInserir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonUpdate)))
+                .addContainerGap())
         );
 
         clienteInfoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonInserir, buttonUpdate});
+
+        clienteInfoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtClienteCep, txtClienteTel});
 
         clienteInfoLayout.setVerticalGroup(
             clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,31 +320,43 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtClienteNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtClienteNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtClienteTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtClienteEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtClienteRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtClienteComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(txtClienteCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(txtClienteNumCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtClienteMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(fTxtClienteCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(clienteInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonInserir)
                     .addComponent(buttonUpdate))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         clienteInfoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {fTxtClienteCPF, txtClienteNasc, txtClienteNome});
@@ -333,7 +382,7 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
                     .addComponent(clienteTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(clienteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 210, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -356,9 +405,12 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
             txtClienteNome.setText(model.getValueAt(i, 1).toString());
             txtClienteNasc.setText(model.getValueAt(i, 2).toString());
             txtClienteTel.setText(model.getValueAt(i, 3).toString());
-            txtClienteEnd.setText(model.getValueAt(i, 4).toString());
-            txtClienteMail.setText(model.getValueAt(i, 5).toString());
-            fTxtClienteCPF.setText(model.getValueAt(i, 6).toString());
+            txtClienteRua.setText(model.getValueAt(i, 4).toString());
+            txtClienteComplemento.setText(model.getValueAt(i, 5).toString());
+            txtClienteCep.setText(model.getValueAt(i, 6).toString());
+            txtClienteNumCasa.setText(model.getValueAt(i, 7).toString());
+            txtClienteMail.setText(model.getValueAt(i, 8).toString());
+            fTxtClienteCPF.setText(model.getValueAt(i, 9).toString());
         }
     }//GEN-LAST:event_jTableClientesMouseClicked
 
@@ -383,7 +435,10 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
             txtClienteNome.setText("");
             txtClienteNasc.setText("");
             txtClienteTel.setText("");
-            txtClienteEnd.setText("");
+            txtClienteRua.setText("");
+            txtClienteComplemento.setText("");
+            txtClienteCep.setText("");
+            txtClienteNumCasa.setText("");
             txtClienteMail.setText("");
             fTxtClienteCPF.setText("");
         }
@@ -410,7 +465,10 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         String nome = txtClienteNome.getText();
         String nasc = txtClienteNasc.getText();
         String tel = txtClienteTel.getText();
-        String end = txtClienteEnd.getText();
+        String rua = txtClienteRua.getText();
+        String complemento = txtClienteComplemento.getText();
+        String cep = txtClienteCep.getText();
+        String numCasa = txtClienteNumCasa.getText();
         String email = txtClienteMail.getText();
         String cpf = fTxtClienteCPF.getText();
         try {
@@ -423,7 +481,7 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
                     return;
                 }
             }
-            ServiceCliente.cadastrarCliente(nome, nasc, tel, end, email, cpf);
+            ServiceCliente.cadastrarCliente(nome, nasc, tel, rua, complemento, cep, numCasa, email, cpf);
             ListarClientes();
             JOptionPane.showMessageDialog(this, "Cliente cadastrado");
         } catch (Exception e) {
@@ -434,7 +492,10 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         txtClienteNome.setText("");
         txtClienteNasc.setText("");
         txtClienteTel.setText("");
-        txtClienteEnd.setText("");
+        txtClienteRua.setText("");
+        txtClienteComplemento.setText("");
+        txtClienteNumCasa.setText("");
+        txtClienteCep.setText("");
         txtClienteMail.setText("");
         fTxtClienteCPF.setText("");
         buttonUpdate.setEnabled(false);
@@ -447,7 +508,10 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         String nome = txtClienteNome.getText();
         String nasc = txtClienteNasc.getText();
         String tel = txtClienteTel.getText();
-        String end = txtClienteEnd.getText();
+        String rua = txtClienteRua.getText();
+        String complemento = txtClienteComplemento.getText();
+        String cep = txtClienteCep.getText();
+        String numCasa = txtClienteNumCasa.getText();
         String email = txtClienteMail.getText();
         String cpf = fTxtClienteCPF.getText();
         try {
@@ -460,7 +524,7 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
                     return;
                 }
             }
-            ServiceCliente.atualizarCliente(id, nome, nasc, tel, end, email, cpf);
+            ServiceCliente.atualizarCliente(id, nome, nasc, tel, rua, complemento, cep, numCasa, email, cpf);
             ListarClientes();
             JOptionPane.showMessageDialog(this, "Cliente atualizado");
         } catch (Exception e) {
@@ -471,7 +535,10 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
         txtClienteNome.setText("");
         txtClienteNasc.setText("");
         txtClienteTel.setText("");
-        txtClienteEnd.setText("");
+        txtClienteRua.setText("");
+        txtClienteComplemento.setText("");
+        txtClienteNumCasa.setText("");
+        txtClienteCep.setText("");
         txtClienteMail.setText("");
         fTxtClienteCPF.setText("");
         buttonUpdate.setEnabled(false);
@@ -505,6 +572,9 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
     private javax.swing.JPanel clienteTabela;
     private javax.swing.JFormattedTextField fTxtClienteCPF;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -515,11 +585,14 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
-    private javax.swing.JTextField txtClienteEnd;
+    private javax.swing.JFormattedTextField txtClienteCep;
+    private javax.swing.JTextField txtClienteComplemento;
     private javax.swing.JLabel txtClienteID;
     private javax.swing.JTextField txtClienteMail;
     private javax.swing.JFormattedTextField txtClienteNasc;
     private javax.swing.JTextField txtClienteNome;
+    private javax.swing.JFormattedTextField txtClienteNumCasa;
+    private javax.swing.JTextField txtClienteRua;
     private javax.swing.JFormattedTextField txtClienteTel;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables

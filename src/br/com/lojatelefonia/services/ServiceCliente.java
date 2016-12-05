@@ -16,13 +16,15 @@ import br.com.lojatelefonia.exceptions.DataSourceException;
 public class ServiceCliente {
 
     //Insere um cliente na fonte de dados
-    public static void cadastrarCliente(String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente)
+    public static void cadastrarCliente(String nomeCliente, String nascCliente, 
+            String telefoneCliente, String ruaCliente,String compCliente, String cepCliente, 
+            String numCasaCliente, String emailCliente, String cpfCliente)
             throws ClienteException, DataSourceException {
         //Realização de validações de negócio
         if ("".equals(nomeCliente) || "  /  /    ".equals(nascCliente)
                 || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente) 
-                || "".equals(endCliente)) {
+                || "".equals(ruaCliente) || "".equals(compCliente) || "     -  ".equals(cepCliente)
+                || "".equals(numCasaCliente)) {
             throw new ClienteException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if (!emailCliente.contains("@") && !emailCliente.contains(".")) {
             throw new ClienteException("E-mail incorreto!");
@@ -33,7 +35,8 @@ public class ServiceCliente {
         }
         try {
             //Realiza a chamada de inserção na fonte de dados
-            DaoCliente.inserir(nomeCliente, nascCliente, telefoneCliente, endCliente, emailCliente, cpfCliente);
+            DaoCliente.inserir(nomeCliente, nascCliente, telefoneCliente, ruaCliente, 
+                    compCliente, cepCliente, numCasaCliente, emailCliente, cpfCliente);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
@@ -43,13 +46,15 @@ public class ServiceCliente {
     }
 
     //Atualiza um cliente na fonte de dados
-    public static void atualizarCliente(Integer idCliente, String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente)
+    public static void atualizarCliente(Integer idCliente, String nomeCliente, String nascCliente, 
+            String telefoneCliente, String ruaCliente,String compCliente, String cepCliente, 
+            String numCasaCliente, String emailCliente, String cpfCliente)
             throws ClienteException, DataSourceException {
         //Realização de validações de negócio
         if ("".equals(nomeCliente) || "  /  /    ".equals(nascCliente)
-                || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente)
-                || "".equals(endCliente)) {
+                || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente) 
+                || "".equals(ruaCliente) || "".equals(compCliente) || "     -  ".equals(cepCliente)
+                || "".equals(numCasaCliente)) {
             throw new ClienteException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if (!emailCliente.contains("@") && !emailCliente.contains(".")) {
             throw new ClienteException("E-mail incorreto!");
@@ -58,7 +63,8 @@ public class ServiceCliente {
         }
         try {
             //Realiza a chamada de atualização na fonte de dados
-            DaoCliente.atualizar(idCliente, nomeCliente, nascCliente, telefoneCliente, endCliente, emailCliente, cpfCliente);
+            DaoCliente.atualizar(idCliente, nomeCliente, nascCliente, telefoneCliente, ruaCliente, 
+                    compCliente, cepCliente, numCasaCliente, emailCliente, cpfCliente);
             return;
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão

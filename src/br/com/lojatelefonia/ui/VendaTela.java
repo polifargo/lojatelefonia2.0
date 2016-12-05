@@ -78,16 +78,19 @@ public final class VendaTela extends javax.swing.JInternalFrame {
     public void ListarClientes() {
         ArrayList<Cliente> lista = DaoCliente.getListaClientes();
         DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-        Object[] row = new Object[7];
+        model.setRowCount(0);
+        Object[] row = new Object[10];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getId();
             row[1] = lista.get(i).getNome();
             row[2] = lista.get(i).getNasc();
             row[3] = lista.get(i).getTelefone();
-            row[4] = lista.get(i).getEnd();
-            row[5] = lista.get(i).getEmail();
-            row[6] = lista.get(i).getCpf();
-
+            row[4] = lista.get(i).getRua();
+            row[5] = lista.get(i).getComplemento();
+            row[6] = lista.get(i).getCep();
+            row[7] = lista.get(i).getNumCasa();
+            row[8] = lista.get(i).getEmail();
+            row[9] = lista.get(i).getCpf();
             model.addRow(row);
         }
     }
@@ -337,11 +340,11 @@ public final class VendaTela extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Data de Nascimento", "Telefone", "Endereço", "E-mail", "CPF"
+                "ID", "Nome", "Data de Nascimento", "Telefone", "Rua", "Complemento", "Cep", "Número da Casa", "E-mail", "CPF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
