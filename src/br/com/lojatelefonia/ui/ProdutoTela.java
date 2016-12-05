@@ -10,6 +10,7 @@ import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Produto;
 import br.com.lojatelefonia.services.ServiceProduto;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public final class ProdutoTela extends javax.swing.JInternalFrame {
@@ -484,14 +485,17 @@ public final class ProdutoTela extends javax.swing.JInternalFrame {
     private void txtProdutoFabFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProdutoFabFocusLost
         String dataFabText = txtProdutoFab.getText();
         Date dataFabVal = null;
+        Calendar calendar = Calendar.getInstance();
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.setLenient(false);
             dataFabVal = sdf.parse(dataFabText);
+            calendar.setTime(dataFabVal);
         } catch (Exception e) {
 
         }
-        if (dataFabVal == null) {
+        int ano = calendar.get(Calendar.YEAR);
+        if (dataFabVal == null || ano > 2000 || ano < 1915) {
             txtProdutoFab.setText("");
             txtProdutoFab.setValue(null);
         }

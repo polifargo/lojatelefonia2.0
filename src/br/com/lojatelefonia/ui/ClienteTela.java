@@ -9,7 +9,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Cliente;
 import br.com.lojatelefonia.services.ServiceCliente;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public final class ClienteTela extends javax.swing.JInternalFrame {
@@ -479,14 +481,17 @@ public final class ClienteTela extends javax.swing.JInternalFrame {
     private void txtClienteNascFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClienteNascFocusLost
         String dataNascText = txtClienteNasc.getText();
         Date dataNascVal = null;
+        Calendar calendar = Calendar.getInstance();
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.setLenient(false);
             dataNascVal = sdf.parse(dataNascText);
+            calendar.setTime(dataNascVal);
         } catch (Exception e) {
 
         }
-        if (dataNascVal == null) {
+        int ano = calendar.get(Calendar.YEAR);
+        if (dataNascVal == null || ano > 2000 || ano < 1915) {
             txtClienteNasc.setText("");
             txtClienteNasc.setValue(null);
         }

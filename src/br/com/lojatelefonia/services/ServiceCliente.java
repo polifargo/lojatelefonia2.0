@@ -63,7 +63,7 @@ public class ServiceCliente {
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
             e.printStackTrace();
-            throw new ClienteException("CPF duplicado");
+            throw new ClienteException("Erro na fonte de dados");
         }
     }
 
