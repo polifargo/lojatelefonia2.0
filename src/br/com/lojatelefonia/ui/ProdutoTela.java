@@ -469,9 +469,9 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
     //Pesquisar itens na tabela
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         // TODO add your handling code here:
-        TableRowSorter sorter = null;
+        TableRowSorter sorter;
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<>(model);
         jTableProdutos.setRowSorter(sorter);
         String text = txtPesquisa.getText();
         if (text.length() == 0) {

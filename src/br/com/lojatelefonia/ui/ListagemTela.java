@@ -4,7 +4,6 @@ import br.com.lojatelefonia.dao.DaoListagem;
 import java.util.ArrayList;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Listagem;
 import java.text.SimpleDateFormat;
@@ -110,7 +109,8 @@ public class ListagemTela extends javax.swing.JInternalFrame {
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/forward - Cópia_1.png"))); // NOI18N
@@ -170,9 +170,9 @@ public class ListagemTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        TableRowSorter sorter = null;
+        TableRowSorter sorter;
         DefaultTableModel model = (DefaultTableModel) jTableListagem.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<>(model);
         jTableListagem.setRowSorter(sorter);
         String text = txtPesquisa.getText();
         if (text.length() == 0) {
@@ -183,7 +183,7 @@ public class ListagemTela extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
-        ci.add(ci.MONTH, -1);
+        ci.add(Calendar.MONTH, -1);
         String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
         //refresh
@@ -191,7 +191,7 @@ public class ListagemTela extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
     private void buttonAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvancarActionPerformed
-        ci.add(ci.MONTH, 1);
+        ci.add(Calendar.MONTH, 1);
         String data = sdf.format(ci.getTime());
         dataRelatorio.setText(data);
         //refresh

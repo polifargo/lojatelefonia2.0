@@ -498,7 +498,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
         int comp2 = Integer.parseInt(model.getValueAt(i, 4).toString());
         if (comp > comp2) {
             JOptionPane.showMessageDialog(null, "Quantidade de produtos muito alto.", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
         } else {
             //Insere os dados na tabela carrinho
             double valorUni = Double.parseDouble(model.getValueAt(i, 7).toString());
@@ -523,7 +522,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                        return;
                     }
                 }
             }
@@ -549,7 +547,6 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 ListarVenda();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
             }
         }
     }//GEN-LAST:event_buttonVenderActionPerformed
@@ -559,9 +556,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
         if (jTableVenda.getRowCount() > 0) {
             try {
                 ServiceVenda.excluirCarrinho();
-            } catch (ProdutoException ex) {
-                Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DataSourceException ex) {
+            } catch (ProdutoException | DataSourceException ex) {
                 Logger.getLogger(VendaTela.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -569,9 +564,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
     //Filtro de pesquisa produto
     private void txtPesquisaProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoKeyReleased
-        TableRowSorter sorter = null;
+        TableRowSorter sorter;
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<>(model);
         jTableProdutos.setRowSorter(sorter);
         String text = txtPesquisaProduto.getText();
         if (text.length() == 0) {
@@ -583,9 +578,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
     //Filtro de pesquisa carrinho
     private void txtPesquisaCarrinhoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaCarrinhoKeyReleased
-        TableRowSorter sorter = null;
+        TableRowSorter sorter;
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<>(model);
         jTableVenda.setRowSorter(sorter);
         String text = txtPesquisaCarrinho.getText();
         if (text.length() == 0) {
@@ -608,9 +603,9 @@ public class VendaTela extends javax.swing.JInternalFrame {
     //Filtro de pesquisa de cliente
     private void txtPesquisaClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaClienteKeyReleased
         // TODO add your handling code here:
-        TableRowSorter sorter = null;
+        TableRowSorter sorter;
         DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<>(model);
         jTableClientes.setRowSorter(sorter);
         String text = txtPesquisaCliente.getText();
         if (text.length() == 0) {

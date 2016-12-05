@@ -391,9 +391,9 @@ public class ClienteTela extends javax.swing.JInternalFrame {
 
     //Pesquisar item na tabela
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        TableRowSorter sorter = null;
+        TableRowSorter sorter;
         DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
+        sorter = new TableRowSorter<>(model);
         jTableClientes.setRowSorter(sorter);
         String text = txtPesquisa.getText();
         if (text.length() == 0) {
