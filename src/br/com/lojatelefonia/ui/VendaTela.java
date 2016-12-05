@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 public final class VendaTela extends javax.swing.JInternalFrame {
 
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     Calendar ci = Calendar.getInstance();
 
     public VendaTela() {
@@ -530,7 +530,7 @@ public final class VendaTela extends javax.swing.JInternalFrame {
 
     //Botao realizar vender
     private void buttonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVenderActionPerformed
-        DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         if (jTableVenda.getRowCount() <= 0) {
             JOptionPane.showMessageDialog(null, "O carrinho esta vazio.", "ERRO", JOptionPane.ERROR_MESSAGE);
