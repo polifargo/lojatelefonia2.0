@@ -12,7 +12,7 @@ import br.com.lojatelefonia.services.ServiceCliente;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ClienteTela extends javax.swing.JInternalFrame {
+public final class ClienteTela extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClienteInfo

@@ -12,7 +12,7 @@ import br.com.lojatelefonia.services.ServiceProduto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ProdutoTela extends javax.swing.JInternalFrame {
+public final class ProdutoTela extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ProdutoInfo

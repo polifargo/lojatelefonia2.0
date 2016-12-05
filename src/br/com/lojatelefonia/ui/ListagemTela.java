@@ -9,7 +9,7 @@ import br.com.lojatelefonia.models.Listagem;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ListagemTela extends javax.swing.JInternalFrame {
+public final class ListagemTela extends javax.swing.JInternalFrame {
 
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM/yyyy");
     Calendar ci = Calendar.getInstance();
