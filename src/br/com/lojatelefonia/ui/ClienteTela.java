@@ -9,7 +9,6 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import br.com.lojatelefonia.models.Cliente;
 import br.com.lojatelefonia.services.ServiceCliente;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
