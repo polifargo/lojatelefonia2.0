@@ -24,8 +24,8 @@ public class DaoCliente {
             String ruaCliente,String compCliente, String cepCliente, String numCasaCliente, 
             String emailCliente, String cpfCliente) throws SQLException, Exception {
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO clientes (nome, nascimento, telefone, rua, complemento, numcasa, email, CPF) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (nome, nascimento, telefone, rua, complemento, cep, numcasa, email, cpf) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
