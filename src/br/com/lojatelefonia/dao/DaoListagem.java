@@ -86,6 +86,7 @@ public class DaoListagem {
         ArrayList<Listagem> listaListagem = new ArrayList<Listagem>();
         Connection connection = null;
         connection = ConnectionUtils.getConnection();
+        data.replace("dd/", "");
         String query = "SELECT * FROM listagem WHERE data_venda= '" + data + "' ORDER BY data_venda";
         Statement st;
         ResultSet rs;
