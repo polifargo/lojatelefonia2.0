@@ -26,6 +26,8 @@ public class ServiceProduto {
             throw new ProdutoException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if ("Selecione...".equals(descProduto)) {
             throw new ProdutoException("Descrição do item não definida");
+        } else if (nomeProduto.length() > 255 || descProduto.length() > 255 || marcaProduto.length() > 50 || qtdProduto.toString().length() > 10) {
+            throw new ProdutoException("Limite de tamanho ultrapassado!");
         }
         try {
             //Realiza a chamada de inserção na fonte de dados

@@ -24,6 +24,10 @@ public class ServiceCliente {
             throw new ClienteException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if (!emailCliente.contains("@") && !emailCliente.contains(".")) {
             throw new ClienteException("E-mail incorreto!");
+        } else if (telefoneCliente.contains("  ")) {
+            throw new ClienteException("Telefone invalido!");
+        } else if (nomeCliente.length() > 255 || emailCliente.length() > 255){
+            throw new ClienteException("Limite de tamanho ultrapassado!");
         }
         try {
             //Realiza a chamada de inserção na fonte de dados
@@ -32,7 +36,7 @@ public class ServiceCliente {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
             e.printStackTrace();
-            throw new DataSourceException("Erro na fonte de dados", e);
+            throw new ClienteException("Erro no banco de dados");
         }
     }
 
@@ -45,6 +49,8 @@ public class ServiceCliente {
             throw new ClienteException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if (!emailCliente.contains("@") && !emailCliente.contains(".")) {
             throw new ClienteException("E-mail incorreto!");
+        } else if (telefoneCliente.length() < 12) {
+            throw new ClienteException("Telefone incorreto!");
         }
         try {
             //Realiza a chamada de atualização na fonte de dados
@@ -53,7 +59,7 @@ public class ServiceCliente {
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve uma exceção e uma mensagem amigável a camada de visão
             e.printStackTrace();
-            throw new DataSourceException("Erro na fonte de dados", e);
+            throw new ClienteException("CPF duplicado");
         }
     }
 

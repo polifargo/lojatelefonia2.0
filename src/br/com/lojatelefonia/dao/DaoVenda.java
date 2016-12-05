@@ -23,7 +23,7 @@ public class DaoVenda {
     public static void inserir(Double valorUniProduto, Double valorProduto, String nomeProduto, int qtdProduto)
             throws SQLException, Exception {
         //Monta a string de inserção de um produto no BD, utilizando os dados do produtos passados como parâmetro
-        String sql = "INSERT INTO venda (valoruni_fk, valor_fk, produto_fk, qtd_fk) "
+        String sql = "INSERT INTO venda (valoruni, valor, produto, qtd) "
                 + "VALUES (?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
@@ -123,8 +123,8 @@ public class DaoVenda {
             rs = st.executeQuery(query);
             ModeloVenda venda;
             while (rs.next()) {
-                venda = new ModeloVenda(rs.getInt("idcarrinho"), rs.getDouble("valoruni_fk"), rs.getDouble("valor_fk"), rs.getString("produto_fk"),
-                        rs.getInt("qtd_fk"));
+                venda = new ModeloVenda(rs.getInt("idcarrinho"), rs.getDouble("valoruni"), rs.getDouble("valor"), rs.getString("produto"),
+                        rs.getInt("qtd"));
                 listaVendas.add(venda);
             }
         } catch (Exception e) {

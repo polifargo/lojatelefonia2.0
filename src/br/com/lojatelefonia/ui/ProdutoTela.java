@@ -73,7 +73,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         buttonUpdate = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtProdutoNum = new javax.swing.JFormattedTextField();
-        cbProdutoDesc = new javax.swing.JComboBox<String>();
+        cbProdutoDesc = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -231,7 +231,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        cbProdutoDesc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Celular", "Case", "Película", "Fone de Ouvido" }));
+        cbProdutoDesc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Celular", "Case", "Película", "Fone de Ouvido" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -342,6 +342,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
 
     //Botao atualizar item da tabela
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
         int produtoId = Integer.parseInt(txtProdutoID.getText());
         String produtoNome = txtProdutoNome.getText();
         String produtoDesc = cbProdutoDesc.getSelectedItem().toString();
@@ -351,6 +352,15 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         int produtoQtd = Integer.parseInt(txtProdutoQtd.getText());
         double produtoValor = Double.parseDouble(txtProdutoValor.getText());
         try {
+            for (int i = 0; i < jTableProdutos.getRowCount(); i++) {
+                String input = txtProdutoNum.getText();
+                if (input.equals(model.getValueAt(i, 4)) && produtoId != Integer.parseInt(model.getValueAt(i, 0).toString())) {
+                    txtProdutoNum.setText("");
+                    txtProdutoNum.setValue(null);
+                    JOptionPane.showMessageDialog(null, "Numero de produto ja cadastrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
             ServiceProduto.atualizarProduto(produtoId, produtoNome, produtoDesc, produtoMarca,
                     produtoNum, produtoFabri, produtoQtd, produtoValor);
             ListarProdutos();
@@ -401,6 +411,7 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
 
     //Botao inserir item da tablea
     private void buttonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInserirActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
         String produtoNome = txtProdutoNome.getText();
         String produtoDesc = cbProdutoDesc.getSelectedItem().toString();
         String produtoMarca = txtProdutoMarca.getText();
@@ -409,6 +420,15 @@ public class ProdutoTela extends javax.swing.JInternalFrame {
         int produtoQtd = Integer.parseInt(txtProdutoQtd.getText());
         double produtoValor = Double.parseDouble(txtProdutoValor.getText());
         try {
+            for (int i = 0; i < jTableProdutos.getRowCount(); i++) {
+                String input = txtProdutoNum.getText();
+                if (input.equals(model.getValueAt(i, 4))) {
+                    txtProdutoNum.setText("");
+                    txtProdutoNum.setValue(null);
+                    JOptionPane.showMessageDialog(null, "Numero de produto ja cadastrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
             ServiceProduto.cadastrarProduto(produtoNome, produtoDesc, produtoMarca,
                     produtoNum, produtoFabri, produtoQtd, produtoValor);
             ListarProdutos();

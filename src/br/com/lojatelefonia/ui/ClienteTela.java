@@ -55,20 +55,20 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         txtClienteID = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         clienteInfo = new javax.swing.JPanel();
-        buttonUpdate = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtClienteNasc = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtClienteNome = new javax.swing.JTextField();
         fTxtClienteCPF = new javax.swing.JFormattedTextField();
-        buttonInserir = new javax.swing.JButton();
+        txtClienteNasc = new javax.swing.JFormattedTextField();
         txtClienteTel = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txtClienteEnd = new javax.swing.JTextField();
         txtClienteMail = new javax.swing.JTextField();
+        buttonUpdate = new javax.swing.JButton();
+        buttonInserir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -175,19 +175,11 @@ public class ClienteTela extends javax.swing.JInternalFrame {
 
         clienteInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Informações do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        buttonUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/atualizar.png"))); // NOI18N
-        buttonUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonUpdateActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Nome:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Data de Nascimento:");
+        try {
+            fTxtClienteCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         try {
             txtClienteNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -201,17 +193,19 @@ public class ClienteTela extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Telefone:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("CPF:");
-
         try {
-            fTxtClienteCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtClienteTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        buttonUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/atualizar.png"))); // NOI18N
+        buttonUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUpdateActionPerformed(evt);
+            }
+        });
 
         buttonInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/image/adicionar.png"))); // NOI18N
         buttonInserir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -221,12 +215,17 @@ public class ClienteTela extends javax.swing.JInternalFrame {
             }
         });
 
-        try {
-            txtClienteTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtClienteTel.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Nome:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Data de Nascimento:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Telefone:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("CPF:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Endereço:");
@@ -351,14 +350,14 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         // Mostrar linha selecionada no JTextField
         if (evt.getClickCount() > 1) {
             // Contador de cliques
-                buttonUpdate.setEnabled(true);
-                txtClienteID.setText(model.getValueAt(i, 0).toString());
-                txtClienteNome.setText(model.getValueAt(i, 1).toString());
-                txtClienteNasc.setText(model.getValueAt(i, 2).toString());
-                txtClienteTel.setText(model.getValueAt(i, 3).toString());
-                txtClienteEnd.setText(model.getValueAt(i, 4).toString());
-                txtClienteMail.setText(model.getValueAt(i, 5).toString());
-                fTxtClienteCPF.setText(model.getValueAt(i, 6).toString());
+            buttonUpdate.setEnabled(true);
+            txtClienteID.setText(model.getValueAt(i, 0).toString());
+            txtClienteNome.setText(model.getValueAt(i, 1).toString());
+            txtClienteNasc.setText(model.getValueAt(i, 2).toString());
+            txtClienteTel.setText(model.getValueAt(i, 3).toString());
+            txtClienteEnd.setText(model.getValueAt(i, 4).toString());
+            txtClienteMail.setText(model.getValueAt(i, 5).toString());
+            fTxtClienteCPF.setText(model.getValueAt(i, 6).toString());
         }
     }//GEN-LAST:event_jTableClientesMouseClicked
 
@@ -406,6 +405,7 @@ public class ClienteTela extends javax.swing.JInternalFrame {
 
     //Inserir item na tabela
     private void buttonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInserirActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
         String nome = txtClienteNome.getText();
         String nasc = txtClienteNasc.getText();
         String tel = txtClienteTel.getText();
@@ -413,13 +413,22 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         String email = txtClienteMail.getText();
         String cpf = fTxtClienteCPF.getText();
         try {
+            for (int i = 0; i < jTableClientes.getRowCount(); i++) {
+                String input = fTxtClienteCPF.getText();
+                if (input.equals(model.getValueAt(i, 6))) {
+                    fTxtClienteCPF.setText("");
+                    fTxtClienteCPF.setValue(null);
+                    JOptionPane.showMessageDialog(null, "Numero de CPF ja cadastrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
             ServiceCliente.cadastrarCliente(nome, nasc, tel, end, email, cpf);
             ListarClientes();
             JOptionPane.showMessageDialog(this, "Cliente cadastrado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
-        } 
+        }
         txtClienteID.setText("");
         txtClienteNome.setText("");
         txtClienteNasc.setText("");
@@ -432,6 +441,7 @@ public class ClienteTela extends javax.swing.JInternalFrame {
 
     //Atualizar item da tabela
     private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
         int id = Integer.parseInt(txtClienteID.getText());
         String nome = txtClienteNome.getText();
         String nasc = txtClienteNasc.getText();
@@ -440,6 +450,15 @@ public class ClienteTela extends javax.swing.JInternalFrame {
         String email = txtClienteMail.getText();
         String cpf = fTxtClienteCPF.getText();
         try {
+            for (int i = 0; i < jTableClientes.getRowCount(); i++) {
+                String input = fTxtClienteCPF.getText();
+                if (input.equals(model.getValueAt(i, 6)) && id != Integer.parseInt(model.getValueAt(i, 0).toString())) {
+                    fTxtClienteCPF.setText("");
+                    fTxtClienteCPF.setValue(null);
+                    JOptionPane.showMessageDialog(null, "Numero de CPF ja cadastrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
             ServiceCliente.atualizarCliente(id, nome, nasc, tel, end, email, cpf);
             ListarClientes();
             JOptionPane.showMessageDialog(this, "Cliente atualizado");
@@ -464,15 +483,13 @@ public class ClienteTela extends javax.swing.JInternalFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.setLenient(false);
             dataNascVal = sdf.parse(dataNascText);
+        } catch (Exception e) {
+
         }
-        catch(Exception e) {
-            
-        }
-        
         if (dataNascVal == null) {
             txtClienteNasc.setText("");
             txtClienteNasc.setValue(null);
-        }        
+        }
     }//GEN-LAST:event_txtClienteNascFocusLost
 
 
