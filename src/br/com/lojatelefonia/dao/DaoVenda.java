@@ -53,7 +53,8 @@ public class DaoVenda {
         }
     }
 
-    public static void excluirCarrinho() throws SQLException, Exception {
+    public static void excluirCarrinho() 
+            throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
         String sql = "DELETE FROM venda";
         //Conexão para abertura e fechamento
@@ -79,7 +80,8 @@ public class DaoVenda {
         }
     }
 
-    public static void atualizarProduto(Integer idVenda, Integer qtdProduto) throws SQLException, Exception {
+    public static void atualizarProduto(Integer idVenda, Integer qtdProduto) 
+            throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
         String sql = "UPDATE produtos SET qtd = ? WHERE id = ?";
         //Conexão para abertura e fechamento
@@ -123,8 +125,8 @@ public class DaoVenda {
             rs = st.executeQuery(query);
             ModeloVenda venda;
             while (rs.next()) {
-                venda = new ModeloVenda(rs.getInt("idcarrinho"), rs.getDouble("valoruni"), rs.getDouble("valor"), rs.getString("produto"),
-                        rs.getInt("qtd"));
+                venda = new ModeloVenda(rs.getInt("idcarrinho"), rs.getDouble("valoruni"), 
+                        rs.getDouble("valor"), rs.getString("produto"), rs.getInt("qtd"));
                 listaVendas.add(venda);
             }
         } catch (Exception e) {

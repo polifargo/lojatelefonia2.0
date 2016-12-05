@@ -540,7 +540,8 @@ public class VendaTela extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Cliente nao selecionado", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                ServiceListagem.cadastrarListagem(getProdutos(), Double.parseDouble(txtValorTotal.getText()), txtClienteFinal.getText(), getQtd(), dateFormat.format(date));
+                ServiceListagem.cadastrarListagem(getProdutos(), Double.parseDouble(txtValorTotal.getText()), 
+                        txtClienteFinal.getText(), getQtd(), dateFormat.format(date));
                 JOptionPane.showMessageDialog(this, "Compra realizada com sucesso!");
                 txtClienteFinal.setText("");
                 txtValorTotal.setText("");

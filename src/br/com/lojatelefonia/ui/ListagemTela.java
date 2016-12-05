@@ -76,11 +76,6 @@ public class ListagemTela extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTableListagem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableListagemMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTableListagem);
         if (jTableListagem.getColumnModel().getColumnCount() > 0) {
             jTableListagem.getColumnModel().getColumn(1).setPreferredWidth(300);
@@ -173,11 +168,6 @@ public class ListagemTela extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListagemMouseClicked
-        int i = jTableListagem.getSelectedRow();
-        TableModel model = jTableListagem.getModel();
-    }//GEN-LAST:event_jTableListagemMouseClicked
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         TableRowSorter sorter = null;

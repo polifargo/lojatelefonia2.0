@@ -17,16 +17,18 @@ public class ServiceCliente {
 
     //Insere um cliente na fonte de dados
     public static void cadastrarCliente(String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) throws ClienteException, DataSourceException {
+            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente)
+            throws ClienteException, DataSourceException {
         //Realização de validações de negócio
         if ("".equals(nomeCliente) || "  /  /    ".equals(nascCliente)
-                || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente) || "".equals(endCliente)) {
+                || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente) 
+                || "".equals(endCliente)) {
             throw new ClienteException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if (!emailCliente.contains("@") && !emailCliente.contains(".")) {
             throw new ClienteException("E-mail incorreto!");
         } else if (telefoneCliente.contains("  ")) {
             throw new ClienteException("Telefone invalido!");
-        } else if (nomeCliente.length() > 255 || emailCliente.length() > 255){
+        } else if (nomeCliente.length() > 255 || emailCliente.length() > 255) {
             throw new ClienteException("Limite de tamanho ultrapassado!");
         }
         try {
@@ -42,10 +44,12 @@ public class ServiceCliente {
 
     //Atualiza um cliente na fonte de dados
     public static void atualizarCliente(Integer idCliente, String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) throws ClienteException, DataSourceException {
+            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente)
+            throws ClienteException, DataSourceException {
         //Realização de validações de negócio
         if ("".equals(nomeCliente) || "  /  /    ".equals(nascCliente)
-                || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente) || "".equals(endCliente)) {
+                || "(  )    -    ".equals(telefoneCliente) || "   .   .   -  ".equals(cpfCliente)
+                || "".equals(endCliente)) {
             throw new ClienteException("Um ou mais campos estão vazios, convém preenche-los!");
         } else if (!emailCliente.contains("@") && !emailCliente.contains(".")) {
             throw new ClienteException("E-mail incorreto!");

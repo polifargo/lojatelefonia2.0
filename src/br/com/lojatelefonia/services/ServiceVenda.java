@@ -16,8 +16,8 @@ import br.com.lojatelefonia.exceptions.ProdutoException;
 public class ServiceVenda {
 
     //Insere um Produto na fonte de dados
-    public static void cadastrarProduto(Double valorUni, Double valorTotal, String nomeProduto, int qtdProduto)
-            throws ProdutoException, DataSourceException {
+    public static void cadastrarProduto(Double valorUni, Double valorTotal, String nomeProduto, 
+            int qtdProduto) throws ProdutoException, DataSourceException {
         try {
             //Realiza a chamada de inserção na fonte de dados
             DaoVenda.inserir(valorUni, valorTotal, nomeProduto, qtdProduto);

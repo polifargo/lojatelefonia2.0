@@ -58,9 +58,9 @@ public class DaoProduto {
         }
     }
 
-    public static void atualizar(Integer idProduto, String nomeProduto, String descProduto, String marcaProduto,
-            String numProduto, String fabriProduto, Integer qtdProduto, Double valorProduto)
-            throws SQLException, Exception {
+    public static void atualizar(Integer idProduto, String nomeProduto, String descProduto, 
+            String marcaProduto, String numProduto, String fabriProduto, Integer qtdProduto, 
+            Double valorProduto) throws SQLException, Exception {
         //Monta a string de atualização do produto no BD, utilizando prepared statement
         String sql = "UPDATE produtos SET nome=?, descricao=?, marca=?, numproduto=?, fabricacao=?, qtd=?, valor=? "
                 + "WHERE id=?";
@@ -96,7 +96,8 @@ public class DaoProduto {
         }
     }
 
-    public static void excluir(Integer idProduto) throws SQLException, Exception {
+    public static void excluir(Integer idProduto) 
+            throws SQLException, Exception {
         //Monta a string de atualização do produto no BD, utilizando prepared statement
         String sql = "DELETE FROM produtos WHERE id = " + idProduto;
         //Conexão para abertura e fechamento
@@ -166,8 +167,9 @@ public class DaoProduto {
             rs = st.executeQuery(query);
             Produto produto;
             while (rs.next()) {
-                produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"),
-                        rs.getString("marca"), rs.getString("numproduto"), rs.getString("fabricacao"),
+                produto = new Produto(rs.getInt("id"), rs.getString("nome"), 
+                        rs.getString("descricao"), rs.getString("marca"), 
+                        rs.getString("numproduto"), rs.getString("fabricacao"),
                         rs.getInt("qtd"), rs.getDouble("valor"));
                 listaProdutos.add(produto);
             }

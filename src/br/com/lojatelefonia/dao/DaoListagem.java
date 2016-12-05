@@ -55,7 +55,8 @@ public class DaoListagem {
         }
     }
 
-    public static void excluir(Integer idListagem) throws SQLException, Exception {
+    public static void excluir(Integer idListagem) 
+            throws SQLException, Exception {
         //Monta a string de atualização do produto no BD, utilizando prepared statement
         String sql = "DELETE FROM listagem WHERE idlistagem = " + idListagem;
         //Conexão para abertura e fechamento
@@ -94,7 +95,8 @@ public class DaoListagem {
             rs = st.executeQuery(query);
             Listagem relatorio;
             while (rs.next()) {
-                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getString("produtos"), rs.getDouble("valor_total"), rs.getInt("qtd_items"),
+                relatorio = new Listagem(rs.getInt("idlistagem"), rs.getString("produtos"), 
+                        rs.getDouble("valor_total"), rs.getInt("qtd_items"),
                         rs.getString("cliente"), rs.getString("data_venda"));
                 listaListagem.add(relatorio);
             }

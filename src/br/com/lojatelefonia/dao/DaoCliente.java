@@ -21,9 +21,11 @@ import java.util.ArrayList;
 public class DaoCliente {
 
     public static void inserir(String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) throws SQLException, Exception {
+            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) 
+            throws SQLException, Exception {
         //Monta a string de inserção de um cliente no BD, utilizando os dados do clientes passados como parâmetro
-        String sql = "INSERT INTO clientes (nome, nascimento, telefone, endereco, email, CPF) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (nome, nascimento, telefone, endereco, email, CPF) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -56,9 +58,11 @@ public class DaoCliente {
     }
 
     public static void atualizar(Integer idCliente, String nomeCliente, String nascCliente,
-            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) throws SQLException, Exception {
+            String telefoneCliente, String endCliente, String emailCliente, String cpfCliente) 
+            throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
-        String sql = "UPDATE clientes SET nome=?, nascimento=?, telefone=?, endereco=?, email=?, cpf=? WHERE id=?";
+        String sql = "UPDATE clientes SET nome=?, nascimento=?, telefone=?, endereco=?, email=?, cpf=? "
+                + "WHERE id=?";
         //Conexão para abertura e fechamento
         Connection connection = null;
         //Statement para obtenção através da conexão, execução de comandos SQL e fechamentos
@@ -91,7 +95,8 @@ public class DaoCliente {
         }
     }
 
-    public static void excluir(Integer idCliente) throws SQLException, Exception {
+    public static void excluir(Integer idCliente) 
+            throws SQLException, Exception {
         //Monta a string de atualização do cliente no BD, utilizando prepared statement
         String sql = "DELETE FROM clientes WHERE id = " + idCliente;
         //Conexão para abertura e fechamento
@@ -131,8 +136,10 @@ public class DaoCliente {
             rs = st.executeQuery(query);
             Cliente cliente;
             while (rs.next()) {
-                cliente = new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("nascimento"),
-                        rs.getString("telefone"), rs.getString("endereco"), rs.getString("email"), rs.getString("cpf"));
+                cliente = new Cliente(rs.getInt("id"), rs.getString("nome"), 
+                        rs.getString("nascimento"), rs.getString("telefone"), 
+                        rs.getString("endereco"), rs.getString("email"), 
+                        rs.getString("cpf"));
                 listaClientes.add(cliente);
             }
         } catch (Exception e) {
